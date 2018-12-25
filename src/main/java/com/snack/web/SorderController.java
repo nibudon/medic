@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,8 @@ public class SorderController {
 
 	@Autowired
 	private sorderService sorderService=null;
+
+	private Logger logger=LoggerFactory.getLogger(SorderController.class);
 	
 	@Autowired
 	private userService userService;
@@ -121,7 +125,8 @@ public class SorderController {
 		public String setOrder(HttpServletRequest request,HttpSession session,Receiptinfo receiptinfo) {
 			DoMoneyFK dfk=new DoMoneyFK();
 			Receiptinfo receiptinfoSession = (Receiptinfo)session.getAttribute("receiptinfo");
-			Date day=new Date();    
+			Date day=new Date();
+			logger.info("用户:"+session.getAttribute("frontuserId")+"下了订单!");
 			SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd"); 
 			String oId=df.format(day).toString()+String.valueOf((int)(Math.random()*9000+1000));
 			receiptinfo.setoId(oId);
