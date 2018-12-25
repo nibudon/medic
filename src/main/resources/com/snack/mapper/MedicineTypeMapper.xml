@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snack.mapper.MedicineTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.snack.model.MedicineType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="TypeWithSnackList" type="com.snack.model.MedicineType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <collection property="snackinfos" column="s_type" ofType="com.snack.model.Snackinfo">
+    	<id column="s_id" property="sId" jdbcType="INTEGER"></id>
+    	<result column="s_batch" property="sBatch" jdbcType="VARCHAR" />
+	    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+	    <result column="s_price" property="sPrice" jdbcType="DOUBLE" />
+	    <result column="s_discount" property="sDiscount" jdbcType="VARCHAR" />
+	    <result column="s_pictureUrl" property="sPictureurl" jdbcType="VARCHAR" />
+	    <result column="s_brand" property="sBrand" jdbcType="VARCHAR" />
+	    <result column="s_place" property="sPlace" jdbcType="VARCHAR" />
+	    <result column="s_Imported" property="sImported" jdbcType="INTEGER" />
+	    <result column="s_score" property="sScore" jdbcType="INTEGER" />
+	    <result column="s_pDate" property="sPdate" jdbcType="DATE" />
+	    <result column="s_qDate" property="sQdate" jdbcType="VARCHAR" />
+	    <result column="state" property="state" jdbcType="INTEGER" />
+	    <result column="s_createDate" property="sCreatedate" jdbcType="DATE" />
+	    <result column="s_dese" property="sDese" jdbcType="VARCHAR" />
+	    <result column="s_number" property="sNumber" jdbcType="INTEGER" />
+	    <result column="s_type" property="sType" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <select id="getAllTypes" resultMap="BaseResultMap" parameterType="com.snack.model.MedicineType">
+    select * from m_type where is_delete=0
+  </select>
+  <select id="getTypeById" resultMap="BaseResultMap" parameterType="int">
+  	select * from m_type where is_delete=0 and id=#{id}
+  </select>
+  <select id="getTypeWithSnackById" resultMap="TypeWithSnackList" parameterType="int">
+  	SELECT snackinfo.s_batch,snackinfo.s_brand,snackinfo.s_createDate,snackinfo.s_dese,snackinfo.s_discount,snackinfo.s_id,snackinfo.s_Imported,snackinfo.s_name,snackinfo.s_number,snackinfo.s_pDate,snackinfo.s_pictureUrl,snackinfo.s_place,snackinfo.s_price,snackinfo.s_qDate,snackinfo.s_score,snackinfo.s_type,snackinfo.state,m_type.id,m_type.is_delete,m_type.type_name 
+    from snackinfo right join m_type on snackinfo.s_type=m_type.id
+  	where m_type.is_delete=0 and id=#{id}
+  </select>
+  <update id="deleteType" parameterType="int">
+  	update m_type set is_delete=1 where id=#{id}
+  </update>
+  <insert id="addType">
+  	insert into m_type(type_name,is_delete) values(#{typeName},0)
+  </insert>
+  <insert id="updateType">
+  	update m_type set type_name=#{typeName} where id=#{id}
+  </insert>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snack.mapper.AddressMapper" >
+  <resultMap id="AddressMap" type="com.snack.model.Address" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="receivePerson" property="receive_person" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="isDefault" property="is_default" jdbcType="INTEGER" />
+    <result column="uId" property="u_id" jdbcType="INTEGER" />
+    <result column="isDelete" property="is_delete" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="countNum" type="java.lang.Integer">
+    <result column="countNum" property="countNum" />
+  </resultMap>
+  <select id="getMyAddressByPage" resultMap="AddressMap" parameterType="java.lang.Integer">
+    select id,receive_person,telephone,address,is_default,u_id,is_delete from t_address where is_delete=0 and u_id=#{uId} limit #{page},#{pageSize}
+  </select>
+  <select id="getMyAddress" resultMap="AddressMap" parameterType="java.lang.Integer">
+    select id,receive_person,telephone,address,is_default,u_id,is_delete from t_address where is_delete=0 and u_id=#{uId}
+  </select>
+  <select id="getMyAddressCount" resultMap="countNum" parameterType="java.lang.Integer">
+    select count(1) countNum from t_address where is_delete=0 and u_id=#{uId}
+  </select>
+  <select id="getAddressById" resultMap="AddressMap" parameterType="java.lang.Integer">
+    select id,receive_person,telephone,address,is_default,u_id,is_delete from t_address where is_delete=0 and id=#{id}
+  </select>
+  <insert id="addAddress" parameterType="com.snack.model.Address" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+  	insert into t_address(receive_person,telephone,address,is_default,u_id,is_delete) values(#{receivePerson},#{telephone},#{address},#{isDefault},#{uId},#{isDelete})
+  </insert>
+  <update id="upAddress" parameterType="com.snack.model.Address">
+    update t_address set is_default=#{isDefault},receive_person=#{receivePerson},telephone=#{telephone},address=#{address} where id=#{id}
+  </update>
+  <update id="setDefault" parameterType="int">
+  	update t_address set is_default=1 where id=#{id}
+  </update>
+  <update id="setOtherNotDefault" parameterType="int">
+  	update t_address set is_default=0 where id!=#{id} and u_id=#{uId}
+  </update>
+  <update id="deleteAddress" parameterType="int">
+  	update t_address set is_delete=1 where id=#{id}
+  </update>
+</mapper>
