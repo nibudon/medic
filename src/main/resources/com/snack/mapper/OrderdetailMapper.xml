@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from orderdetail
+    from t_orderdetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from orderdetail
+    from t_orderdetail
     where d_id = #{dId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from orderdetail
+    delete from t_orderdetail
     where d_id = #{dId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.OrderdetailExample" >
-    delete from orderdetail
+    delete from t_orderdetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Orderdetail" >
-    insert into orderdetail (d_id, o_id, s_id, 
+    insert into t_orderdetail (d_id, o_id, s_id,
       o_num, o_money)
     values (#{dId,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{sId,jdbcType=INTEGER}, 
       #{oNum,jdbcType=INTEGER}, #{oMoney,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Orderdetail" >
-    insert into orderdetail
+    insert into t_orderdetail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="dId != null" >
         d_id,
@@ -143,13 +143,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.OrderdetailExample" resultType="java.lang.Integer" >
-    select count(*) from orderdetail
+    select count(*) from t_orderdetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update orderdetail
+    update t_orderdetail
     <set >
       <if test="record.dId != null" >
         d_id = #{record.dId,jdbcType=INTEGER},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update orderdetail
+    update t_orderdetail
     set d_id = #{record.dId,jdbcType=INTEGER},
       o_id = #{record.oId,jdbcType=VARCHAR},
       s_id = #{record.sId,jdbcType=INTEGER},
@@ -183,7 +183,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Orderdetail" >
-    update orderdetail
+    update t_orderdetail
     <set >
       <if test="oId != null" >
         o_id = #{oId,jdbcType=VARCHAR},
@@ -201,7 +201,7 @@
     where d_id = #{dId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Orderdetail" >
-    update orderdetail
+    update t_orderdetail
     set o_id = #{oId,jdbcType=VARCHAR},
       s_id = #{sId,jdbcType=INTEGER},
       o_num = #{oNum,jdbcType=INTEGER},
@@ -211,21 +211,21 @@
   
   <select id="selectOrderdetail" resultType="com.snack.model.domain.DoSnack" parameterType="java.lang.Integer">
     select o.d_id as dId,o.o_num as oNum,o_money as oMoney,s.s_pictureUrl as picUrl,s.s_name as sName 
-	from orderdetail o INNER JOIN snackinfo s on o.s_id=s.s_id where d_id=#{dId}
+	from t_orderdetail o INNER JOIN snackinfo s on o.s_id=s.s_id where d_id=#{dId}
   </select>
   <select id="selectOrderdetailByoId" resultType="com.snack.model.Orderdetail" parameterType="java.lang.String">
-    select * from orderdetail where o_id=#{oId}
+    select * from t_orderdetail where o_id=#{oId}
   </select>
   <select id="selectOrderdetailPayMoney" resultType="java.lang.Double" parameterType="java.lang.String">
 	  SELECT SUM(allMoney) payNumber from 
-	(SELECT o_num*o_money as allMoney from orderdetail where o_id=#{oId}) s
+	(SELECT o_num*o_money as allMoney from t_orderdetail where o_id=#{oId}) s
   </select>
   <select id="outExcelOrderDetail" resultType="com.snack.model.domain.DoExcelOrder" parameterType="java.lang.String">
 	  select od.o_id as oId,r.o_name as oName,r.o_phone as oPhone,r.o_address as oAddress,
 		s.s_name as sName,od.o_num as num ,od.o_money as money
-		from orderdetail  od 
-		LEFT JOIN snackinfo s on od.s_id = s.s_id
-		LEFT JOIN receiptinfo r on r.o_id= od.o_id
+		from t_orderdetail  od
+		LEFT JOIN t_snackinfo s on od.s_id = s.s_id
+		LEFT JOIN t_receiptinfo r on r.o_id= od.o_id
 		where od.o_id =#{oId}
   </select>
 </mapper>

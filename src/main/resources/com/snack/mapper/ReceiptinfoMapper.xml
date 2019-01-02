@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from receiptinfo
+    from t_receiptinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from receiptinfo
+    from t_receiptinfo
     where r_id = #{rId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from receiptinfo
+    delete from t_receiptinfo
     where r_id = #{rId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.ReceiptinfoExample" >
-    delete from receiptinfo
+    delete from t_receiptinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Receiptinfo" >
-    insert into receiptinfo (r_id, o_id, o_name, 
+    insert into t_receiptinfo (r_id, o_id, o_name,
       o_phone, o_address)
     values (#{rId,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{oName,jdbcType=VARCHAR}, 
       #{oPhone,jdbcType=VARCHAR}, #{oAddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Receiptinfo" >
-    insert into receiptinfo
+    insert into t_receiptinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="rId != null" >
         r_id,
@@ -143,13 +143,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.ReceiptinfoExample" resultType="java.lang.Integer" >
-    select count(*) from receiptinfo
+    select count(*) from t_receiptinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update receiptinfo
+    update t_receiptinfo
     <set >
       <if test="record.rId != null" >
         r_id = #{record.rId,jdbcType=INTEGER},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update receiptinfo
+    update t_receiptinfo
     set r_id = #{record.rId,jdbcType=INTEGER},
       o_id = #{record.oId,jdbcType=VARCHAR},
       o_name = #{record.oName,jdbcType=VARCHAR},
@@ -183,7 +183,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Receiptinfo" >
-    update receiptinfo
+    update t_receiptinfo
     <set >
       <if test="oId != null" >
         o_id = #{oId,jdbcType=VARCHAR},
@@ -201,7 +201,7 @@
     where r_id = #{rId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Receiptinfo" >
-    update receiptinfo
+    update t_receiptinfo
     set o_id = #{oId,jdbcType=VARCHAR},
       o_name = #{oName,jdbcType=VARCHAR},
       o_phone = #{oPhone,jdbcType=VARCHAR},

@@ -82,7 +82,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from userinfo
+    from t_userinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,21 +93,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from userinfo
+    from t_userinfo
     where u_id = #{uId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from userinfo
+    delete from t_userinfo
     where u_id = #{uId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.UserinfoExample" >
-    delete from userinfo
+    delete from t_userinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Userinfo" >
-    insert into userinfo (u_id, u_realname, u_username, 
+    insert into t_userinfo (u_id, u_realname, u_username,
       u_password, u_money, u_phone, 
       u_email, u_sex, u_resgistDate, 
       u_address, u_score)
@@ -117,7 +117,7 @@
       #{uAddress,jdbcType=VARCHAR}, #{uScore,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Userinfo" >
-    insert into userinfo
+    insert into t_userinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uId != null" >
         u_id,
@@ -190,13 +190,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.UserinfoExample" resultType="java.lang.Integer" >
-    select count(*) from userinfo
+    select count(*) from t_userinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update userinfo
+    update t_userinfo
     <set >
       <if test="record.uId != null" >
         u_id = #{record.uId,jdbcType=INTEGER},
@@ -237,7 +237,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update userinfo
+    update t_userinfo
     set u_id = #{record.uId,jdbcType=INTEGER},
       u_realname = #{record.uRealname,jdbcType=VARCHAR},
       u_username = #{record.uUsername,jdbcType=VARCHAR},
@@ -254,7 +254,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Userinfo" >
-    update userinfo
+    update t_userinfo
     <set >
       <if test="uRealname != null" >
         u_realname = #{uRealname,jdbcType=VARCHAR},
@@ -290,7 +290,7 @@
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Userinfo" >
-    update userinfo
+    update t_userinfo
     set u_realname = #{uRealname,jdbcType=VARCHAR},
       u_username = #{uUsername,jdbcType=VARCHAR},
       u_password = #{uPassword,jdbcType=VARCHAR},
@@ -306,16 +306,16 @@
   
   <!--  登录查询 -->
   <select id="selectUserLogin" resultMap="BaseResultMap" parameterType="com.snack.model.Userinfo">
-    select * from userinfo where u_username=#{uUsername} and u_password=#{uPassword}
+    select * from t_userinfo where u_username=#{uUsername} and u_password=#{uPassword}
   </select>
   
   <select id="selectUserOne" resultMap="BaseResultMap" parameterType="com.snack.model.Userinfo">
-    select * from userinfo where u_username=#{uUsername}
+    select * from t_userinfo where u_username=#{uUsername}
   </select>
   
   <!-- 用户分页 -->
   <select id="selectUserinfoLimit" resultMap="BaseResultMap" parameterType="java.util.Map">
-  	select * from userinfo u 
+  	select * from t_userinfo u
   	<where>
 	  	 <if test="userinfo.uUsername!=null  and userinfo.uUsername!='' ">
 	  	      and u.u_username=#{userinfo.uUsername}

@@ -89,7 +89,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from `order`
+    from `t_order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -100,27 +100,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from `order`
+    from `t_order`
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from `order`
+    delete from `t_order`
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.OrderExample" >
-    delete from `order`
+    delete from `t_order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Order" >
-    insert into `order` (id, o_id, u_id, 
+    insert into `t_order` (id, o_id, u_id,
       e_id, o_time, o_type)
     values (#{id,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER}, 
       #{eId,jdbcType=INTEGER}, #{oTime,jdbcType=DATE}, #{oType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Order" >
-    insert into `order`
+    insert into `t_order`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -163,13 +163,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.OrderExample" resultType="java.lang.Integer" >
-    select count(*) from `order`
+    select count(*) from `t_order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update `order`
+    update `t_order`
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -195,7 +195,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update `order`
+    update `t_order`
     set id = #{record.id,jdbcType=INTEGER},
       o_id = #{record.oId,jdbcType=VARCHAR},
       u_id = #{record.uId,jdbcType=INTEGER},
@@ -207,7 +207,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Order" >
-    update `order`
+    update `t_order`
     <set >
       <if test="oId != null" >
         o_id = #{oId,jdbcType=VARCHAR},
@@ -228,7 +228,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Order" >
-    update `order`
+    update `t_order`
     set o_id = #{oId,jdbcType=VARCHAR},
       u_id = #{uId,jdbcType=INTEGER},
       e_id = #{eId,jdbcType=INTEGER},
@@ -237,11 +237,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectMyOrderLimit" resultMap="BaseResultMapTwo" parameterType="java.util.Map">
-  	SELECT * from `order` o INNER JOIN receiptinfo r
+  	SELECT * from `t_order` o INNER JOIN t_receiptinfo r
 	on o.o_id=r.o_id where o.u_id=#{uId} and o.o_type!=1 ORDER BY o.o_time and o.o_type=0 DESC LIMIT #{pageStart},#{pageSize} 
   </select>
   <select id="selectMySuccessOrderLimit" resultMap="BaseResultMapTwo" parameterType="java.util.Map">
-  	SELECT * from `order` o INNER JOIN receiptinfo r
+  	SELECT * from `t_order` o INNER JOIN t_receiptinfo r
 	on o.o_id=r.o_id where o.u_id=#{uId} and o.o_type=1 ORDER BY o.o_time DESC LIMIT #{pageStart},#{pageSize} 
   </select>
   <select id="selectAdminOrderLimit" resultType="com.snack.model.domain.DoAdminOrder" parameterType="java.util.Map">
@@ -249,15 +249,15 @@
 	o.o_time as oTime,o.o_type as oType, r.r_id as rId,
 	r.o_name as oName,r.o_phone as oPhone ,r.o_address as oAddress,
 	 a.ad_id as adId,a.ad_username as adUsername,u.u_username as uUsername
-	from `order` o INNER JOIN receiptinfo r on o.o_id=r.o_id  
-	LEFT JOIN admin a on a.ad_id=o.e_id
-	LEFT JOIN userinfo  u on u.u_id=o.u_id 
+	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
+	LEFT JOIN t_admin a on a.ad_id=o.e_id
+	LEFT JOIN t_userinfo  u on u.u_id=o.u_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
 	      		and o.o_id=#{oId}
 	       </if>
-	       <if test="startDate !=null and startDate !='' ">
-	       		<![CDATA[AND o.start_date  >= #{startDate} ]]>
+	       <if test="oTimeStart !=null and oTimeStart !='' ">
+	       		<![CDATA[AND o.o_time  >= #{oTimeStart} ]]>
 	       </if>
 	       <if test="oTimeEnd !=null and oTimeEnd !='' ">
 	       		<![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
@@ -273,15 +273,15 @@
 	o.o_time as oTime,o.o_type as oType, r.r_id as rId,
 	r.o_name as oName,r.o_phone as oPhone ,r.o_address as oAddress,
 	 a.ad_id as adId,a.ad_username as adUsername,u.u_username as uUsername
-	from `order` o INNER JOIN receiptinfo r on o.o_id=r.o_id  
-	LEFT JOIN admin a on a.ad_id=o.e_id
-	LEFT JOIN userinfo  u on u.u_id=o.u_id 
+	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
+	LEFT JOIN t_admin a on a.ad_id=o.e_id
+	LEFT JOIN t_userinfo  u on u.u_id=o.u_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
 	      		and o.o_id=#{oId}
 	       </if>
-	       <if test="startDate !=null and startDate !='' ">
-	       		<![CDATA[AND o.start_date  >= #{startDate} ]]>
+	       <if test="oTimeStart !=null and oTimeStart !='' ">
+	       		<![CDATA[AND o.o_time  >= #{oTimeStart} ]]>
 	       </if>
 	       <if test="oTimeEnd !=null and oTimeEnd !='' ">
 	       		<![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
@@ -294,8 +294,8 @@
   </select>
   <select id="exportCountAdminOrder"  parameterType="java.util.Map" resultType="java.lang.Integer" >
     SELECT count(*)
-	from `order` o INNER JOIN receiptinfo r on o.o_id=r.o_id  
-	LEFT JOIN admin a on a.ad_id=o.e_id
+	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
+	LEFT JOIN t_admin a on a.ad_id=o.e_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
 	      		and o.o_id=#{oId}
@@ -313,8 +313,8 @@
 	</select>
   <select id="countAdminOrder"  parameterType="java.util.Map" resultType="java.lang.Integer" >
     SELECT count(*)
-	from `order` o INNER JOIN receiptinfo r on o.o_id=r.o_id  
-	LEFT JOIN admin a on a.ad_id=o.e_id
+	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
+	LEFT JOIN t_admin a on a.ad_id=o.e_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
 	      		and o.o_id=#{oId}
@@ -331,16 +331,16 @@
 	    </where>
 	</select>
 	 <delete id="deleteAdminOrder" parameterType="java.lang.String" > 
-		DELETE o,od,ri FROM `order` o LEFT JOIN orderdetail od on o.o_id=od.o_id
-		LEFT JOIN  receiptinfo ri on ri.o_id = o.o_id
+		DELETE o,od,ri FROM `t_order` o LEFT JOIN t_orderdetail od on o.o_id=od.o_id
+		LEFT JOIN  t_receiptinfo ri on ri.o_id = o.o_id
 		where o.o_id=#{oId}
 	  </delete>
 	<update id="updateOrderByoId" parameterType="java.lang.String">
-		UPDATE `order` SET o_type=-2 where o_id=#{oId}
+		UPDATE `t_order` SET o_type=-2 where o_id=#{oId}
 	</update>
 	<select id="selectPushSnakcNum" parameterType="java.lang.Integer" resultType="com.snack.model.Orderdetail">
 		SELECT d_id as dId, o_Id as oId, s_id as sId, o_num as oNum ,o_money AS oMoney 
-		from orderdetail o where o_id in
-		(SELECT o_id from `order` where id=#{id});
+		from t_orderdetail o where o_id in
+		(SELECT o_id from `t_order` where id=#{id});
 	</select>
 </mapper>

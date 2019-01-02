@@ -93,7 +93,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from snackinfo
+    from t_snackinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -104,21 +104,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from snackinfo
+    from t_snackinfo
     where s_id = #{sId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from snackinfo
+    delete from t_snackinfo
     where s_id = #{sId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.SnackinfoExample" >
-    delete from snackinfo
+    delete from t_snackinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Snackinfo" >
-    insert into snackinfo (s_id, s_batch, s_name, 
+    insert into t_snackinfo (s_id, s_batch, s_name,
       s_price, s_discount, s_pictureUrl, 
       s_brand, s_place, s_Imported, 
       s_score, s_pDate, s_qDate, 
@@ -132,7 +132,7 @@
       #{sNumber,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Snackinfo" >
-    insert into snackinfo
+    insert into t_snackinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="sId != null" >
         s_id,
@@ -241,13 +241,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.SnackinfoExample" resultType="java.lang.Integer" >
-    select count(*) from snackinfo
+    select count(*) from t_snackinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update snackinfo
+    update t_snackinfo
     <set >
       <if test="record.sId != null" >
         s_id = #{record.sId,jdbcType=INTEGER},
@@ -303,7 +303,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update snackinfo
+    update t_snackinfo
     set s_id = #{record.sId,jdbcType=INTEGER},
       s_batch = #{record.sBatch,jdbcType=VARCHAR},
       s_name = #{record.sName,jdbcType=VARCHAR},
@@ -325,7 +325,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Snackinfo" >
-    update snackinfo
+    update t_snackinfo
     <set >
       <if test="sBatch != null" >
         s_batch = #{sBatch,jdbcType=VARCHAR},
@@ -379,7 +379,7 @@
     where s_id = #{sId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Snackinfo" >
-    update snackinfo
+    update t_snackinfo
     set s_batch = #{sBatch,jdbcType=VARCHAR},
       s_name = #{sName,jdbcType=VARCHAR},
       s_price = #{sPrice,jdbcType=DOUBLE},
@@ -401,24 +401,24 @@
   
   <!-- 查询热销商品 --> 
   <select id="selectHot" resultMap="BaseResultMap">
-    SELECT SUM(recordNumber)AS xl,snackinfo.s_batch,snackinfo.s_brand,snackinfo.s_createDate,snackinfo.s_dese,snackinfo.s_discount,snackinfo.s_id,snackinfo.s_Imported,snackinfo.s_name,snackinfo.s_number,snackinfo.s_pDate,snackinfo.s_pictureUrl,snackinfo.s_place,snackinfo.s_price,snackinfo.s_qDate,snackinfo.s_score,snackinfo.s_type,snackinfo.state,m_type.id,m_type.is_delete,m_type.type_name
-	FROM record,snackinfo,m_type 
-	WHERE record.s_id=snackinfo.s_id  AND snackinfo.state=1 AND snackinfo.s_type=m_type.id
+    SELECT SUM(recordNumber)AS xl,ts.s_batch,ts.s_brand,ts.s_createDate,ts.s_dese,ts.s_discount,ts.s_id,ts.s_Imported,ts.s_name,ts.s_number,ts.s_pDate,ts.s_pictureUrl,ts.s_place,ts.s_price,ts.s_qDate,ts.s_score,ts.s_type,ts.state,tmt.id,tmt.is_delete,tmt.type_name
+	FROM t_record tr,t_snackinfo ts,t_medicine_type tmt
+	WHERE tr.s_id=ts.s_id  AND ts.state=1 AND ts.s_type=tmt.id
 	and recordDate BETWEEN #{dateone} and #{datetwo} 
 	GROUP BY s_id  ORDER BY xl DESC  LIMIT 10
   </select>
   
     <!--查询最新商品 -->
   <select id="selectNew" resultMap="BaseResultMap">
-    SELECT snackinfo.s_batch,snackinfo.s_brand,snackinfo.s_createDate,snackinfo.s_dese,snackinfo.s_discount,snackinfo.s_id,snackinfo.s_Imported,snackinfo.s_name,snackinfo.s_number,snackinfo.s_pDate,snackinfo.s_pictureUrl,snackinfo.s_place,snackinfo.s_price,snackinfo.s_qDate,snackinfo.s_score,snackinfo.s_type,snackinfo.state,m_type.id,m_type.is_delete,m_type.type_name
-	FROM snackinfo,m_type WHERE snackinfo.s_type=m_type.id
+    SELECT ts.s_batch,ts.s_brand,ts.s_createDate,ts.s_dese,ts.s_discount,ts.s_id,ts.s_Imported,ts.s_name,ts.s_number,ts.s_pDate,ts.s_pictureUrl,ts.s_place,ts.s_price,ts.s_qDate,ts.s_score,ts.s_type,ts.state,tmt.id,tmt.is_delete,tmt.type_name
+	FROM t_snackinfo ts,t_medicine_type tmt WHERE ts.s_type=tmt.id
 	ORDER  BY s_createDate DESC LIMIT 10
   </select>
   
    <!--查询类别商品 -->
   <select id="selectPuffing" resultMap="BaseResultMap" parameterType="com.snack.model.Snackinfo">
-    SELECT snackinfo.s_batch,snackinfo.s_brand,snackinfo.s_createDate,snackinfo.s_dese,snackinfo.s_discount,snackinfo.s_id,snackinfo.s_Imported,snackinfo.s_name,snackinfo.s_number,snackinfo.s_pDate,snackinfo.s_pictureUrl,snackinfo.s_place,snackinfo.s_price,snackinfo.s_qDate,snackinfo.s_score,snackinfo.s_type,snackinfo.state,m_type.id,m_type.is_delete,m_type.type_name 
-    from snackinfo,m_type where snackinfo.s_type=m_type.id 
+    SELECT ts.s_batch,ts.s_brand,ts.s_createDate,ts.s_dese,ts.s_discount,ts.s_id,ts.s_Imported,ts.s_name,ts.s_number,ts.s_pDate,ts.s_pictureUrl,ts.s_place,ts.s_price,ts.s_qDate,ts.s_score,ts.s_type,ts.state,tmt.id,tmt.is_delete,tmt.type_name
+    from t_snackinfo ts,t_medicine_type tmt where ts.s_type=tmt.id
       <if test="sType !=null and sType !=''">
          and s_type=#{sType} 
       </if>
@@ -428,19 +428,19 @@
       <if test="sName !=null and sName !=''">
       		and s_name like "%"#{sName}"%"
       </if>
-    ORDER  BY snackinfo.s_createDate desc LIMIT 20
+    ORDER  BY ts.s_createDate desc LIMIT 20
   </select>
   
   
   <select id="selectOrderSnack" resultType="com.snack.model.domain.DoSnack" parameterType="map">
     select o.d_id as dId,o.o_num as oNum,o_money as oMoney,s.s_pictureUrl as picUrl,s.s_name as sName 
-	from orderdetail o INNER JOIN snackinfo s on o.s_id=s.s_id
+	from t_orderdetail o INNER JOIN t_snackinfo s on o.s_id=s.s_id
 	where o.o_id=#{oId} LIMIT #{pageStart},#{pageSize}
   </select>
   
   <select id="selectAdminSnackLimit" resultMap="BaseResultMap" parameterType="map">
-    SELECT o.s_batch,o.s_brand,o.s_createDate,o.s_dese,o.s_discount,o.s_id,o.s_Imported,o.s_name,o.s_number,o.s_pDate,o.s_pictureUrl,o.s_place,o.s_price,o.s_qDate,o.s_score,o.s_type,o.state,m_type.id,m_type.is_delete,m_type.type_name
-	from snackinfo o,m_type where o.s_type=m_type.id
+    SELECT o.s_batch,o.s_brand,o.s_createDate,o.s_dese,o.s_discount,o.s_id,o.s_Imported,o.s_name,o.s_number,o.s_pDate,o.s_pictureUrl,o.s_place,o.s_price,o.s_qDate,o.s_score,o.s_type,o.state,tmt.id,tmt.is_delete,tmt.type_name
+	from t_snackinfo o,t_medicine_type tmt where o.s_type=tmt.id
    		<if test="sType != null and sType != '' ">
       		and o.s_type = #{sType}  
         </if>
@@ -458,7 +458,7 @@
   </select>
   
   <select id="selectAdminSnackCount" resultType="java.lang.Integer" parameterType="map">
-    select count(*) from snackinfo o 
+    select count(*) from t_snackinfo o
     <where>
     		<if test="sType != null and sType != '' ">
 	      		o.s_type = #{sType}  

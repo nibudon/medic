@@ -82,7 +82,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from admin
+    from t_admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,27 +93,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from admin
+    from t_admin
     where ad_id = #{adId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from admin
+    delete from t_admin
     where ad_id = #{adId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.AdminExample" >
-    delete from admin
+    delete from t_admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Admin" >
-    insert into admin (ad_id, ad_username, ad_password, 
+    insert into t_admin (ad_id, ad_username, ad_password,
       role_id)
     values (#{adId,jdbcType=INTEGER}, #{adUsername,jdbcType=VARCHAR}, #{adPassword,jdbcType=VARCHAR}, 
       #{roleId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Admin" >
-    insert into admin
+    insert into t_admin
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="adId != null" >
         ad_id,
@@ -144,13 +144,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.AdminExample" resultType="java.lang.Integer" >
-    select count(*) from admin
+    select count(*) from t_admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update admin
+    update t_admin
     <set >
       <if test="record.adId != null" >
         ad_id = #{record.adId,jdbcType=INTEGER},
@@ -170,7 +170,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update admin
+    update t_admin
     set ad_id = #{record.adId,jdbcType=INTEGER},
       ad_username = #{record.adUsername,jdbcType=VARCHAR},
       ad_password = #{record.adPassword,jdbcType=VARCHAR},
@@ -180,7 +180,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Admin" >
-    update admin
+    update t_admin
     <set >
       <if test="adUsername != null" >
         ad_username = #{adUsername,jdbcType=VARCHAR},
@@ -195,14 +195,14 @@
     where ad_id = #{adId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Admin" >
-    update admin
+    update t_admin
     set ad_username = #{adUsername,jdbcType=VARCHAR},
       ad_password = #{adPassword,jdbcType=VARCHAR},
       role_id = #{roleId,jdbcType=INTEGER}
     where ad_id = #{adId,jdbcType=INTEGER}
   </update>
   <select id="selectAdminLimit" resultMap="BaseResultMapTwo" parameterType="java.util.Map">
-  	select * from admin a INNER JOIN role r on a.role_id=r.role_id 
+  	select * from t_admin a INNER JOIN t_role r on a.role_id=r.role_id
   	<where>
   		<if test="admin!=null">
 	  	 <if test="admin.adUsername!=null and admin.adUsername!='' ">
@@ -217,7 +217,7 @@
   	LIMIT #{pageStart},#{pageSize} 
   </select>
   <select id="countAdminLimit" parameterType="java.util.Map" resultType="java.lang.Integer" >
-    select count(*) from admin a INNER JOIN role r on a.role_id=r.role_id 
+    select count(*) from t_admin a INNER JOIN t_role r on a.role_id=r.role_id
   	<where>
   	  <if test="admin!=null">
 	  	 <if test="admin.adUsername!=null and admin.adUsername!='' ">
@@ -230,11 +230,11 @@
   	 </where>
   </select>
   <select id="selectAdminByOne" resultMap="BaseResultMapTwo" parameterType="java.lang.Integer">
-  	select * from admin a INNER JOIN role r on a.role_id=r.role_id 
+  	select * from t_admin a INNER JOIN t_role r on a.role_id=r.role_id
 		where a.ad_id=#{adId}
   </select>
   <update id="updateAdminInfo" parameterType="com.snack.model.domain.DoAdminInfo">
-  	UPDATE `admin` SET ad_username=#{adUsername},ad_password=#{adPassword},role_id =#{roleId} 
+  	UPDATE `t_admin` SET ad_username=#{adUsername},ad_password=#{adPassword},role_id =#{roleId}
   	WHERE ad_id=#{adId}
   </update>
 </mapper>

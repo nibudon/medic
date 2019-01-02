@@ -74,7 +74,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from record
+    from t_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,27 +85,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from record
+    from t_record
     where record_id = #{recordId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from record
+    delete from t_record
     where record_id = #{recordId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.RecordExample" >
-    delete from record
+    delete from t_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Record" >
-    insert into record (record_id, s_id, recordDate, 
+    insert into t_record (record_id, s_id, recordDate,
       recordNumber)
     values (#{recordId,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER}, #{recorddate,jdbcType=DATE}, 
       #{recordnumber,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Record" >
-    insert into record
+    insert into t_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="recordId != null" >
         record_id,
@@ -136,13 +136,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.RecordExample" resultType="java.lang.Integer" >
-    select count(*) from record
+    select count(*) from t_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update record
+    update t_record
     <set >
       <if test="record.recordId != null" >
         record_id = #{record.recordId,jdbcType=INTEGER},
@@ -162,7 +162,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update record
+    update t_record
     set record_id = #{record.recordId,jdbcType=INTEGER},
       s_id = #{record.sId,jdbcType=INTEGER},
       recordDate = #{record.recorddate,jdbcType=DATE},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Record" >
-    update record
+    update t_record
     <set >
       <if test="sId != null" >
         s_id = #{sId,jdbcType=INTEGER},
@@ -187,7 +187,7 @@
     where record_id = #{recordId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Record" >
-    update record
+    update t_record
     set s_id = #{sId,jdbcType=INTEGER},
       recordDate = #{recorddate,jdbcType=DATE},
       recordNumber = #{recordnumber,jdbcType=INTEGER}
@@ -195,7 +195,7 @@
   </update>
   <select id="selectGroupBytype" parameterType="map" resultType="com.snack.model.domain.DoRecord">
   		select sum(r.recordNumber) as value,m.type_name as name
-		from record r RIGHT JOIN snackinfo s on r.s_id=s.s_id LEFT JOIN m_type m on s.s_type=m.id
+		from t_record r RIGHT JOIN t_snackinfo s on r.s_id=s.s_id LEFT JOIN t_medicine_type m on s.s_type=m.id
 		<where>
 		     <if test="startDate !=null and startDate !='' ">
 	       		<![CDATA[AND recordDate  >= #{startDate} ]]>

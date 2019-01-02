@@ -76,7 +76,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from permission
+    from t_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,7 +87,7 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from permission
+    from t_permission
     where perid = #{perid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -95,13 +95,13 @@
     where perid = #{perid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.PermissionExample" >
-    delete from permission
+    delete from t_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Permission" >
-    insert into permission (perid, pname, parentid, 
+    insert into t_permission (perid, pname, parentid,
       url, isparent, ismenu
       )
     values (#{perid,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
@@ -109,7 +109,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Permission" >
-    insert into permission
+    insert into t_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="perid != null" >
         perid,
@@ -152,13 +152,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.PermissionExample" resultType="java.lang.Integer" >
-    select count(*) from permission
+    select count(*) from t_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update permission
+    update t_permission
     <set >
       <if test="record.perid != null" >
         perid = #{record.perid,jdbcType=INTEGER},
@@ -184,7 +184,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update permission
+    update t_permission
     set perid = #{record.perid,jdbcType=INTEGER},
       pname = #{record.pname,jdbcType=VARCHAR},
       parentid = #{record.parentid,jdbcType=INTEGER},
@@ -196,7 +196,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Permission" >
-    update permission
+    update t_permission
     <set >
       <if test="pname != null" >
         pname = #{pname,jdbcType=VARCHAR},
@@ -217,7 +217,7 @@
     where perid = #{perid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Permission" >
-    update permission
+    update t_permission
     set pname = #{pname,jdbcType=VARCHAR},
       parentid = #{parentid,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
@@ -226,6 +226,6 @@
     where perid = #{perid,jdbcType=INTEGER}
   </update>
   <select id="selectRolePermission" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-  	SELECT * from permission where perid in (SELECT perid from rolepermission where role_id=#{releId})
+  	SELECT * from t_permission where perid in (SELECT perid from t_rolepermission where role_id=#{releId})
   </select>
 </mapper>

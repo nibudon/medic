@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from integral
+    from t_integral
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from integral
+    from t_integral
     where i_id = #{iId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from integral
+    delete from t_integral
     where i_id = #{iId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.IntegralExample" >
-    delete from integral
+    delete from t_integral
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Integral" >
-    insert into integral (i_id, u_id, i_number, 
+    insert into t_integral (i_id, u_id, i_number,
       i_time, i_dese)
     values (#{iId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{iNumber,jdbcType=INTEGER}, 
       #{iTime,jdbcType=DATE}, #{iDese,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Integral" >
-    insert into integral
+    insert into t_integral
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="iId != null" >
         i_id,
@@ -143,13 +143,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.IntegralExample" resultType="java.lang.Integer" >
-    select count(*) from integral
+    select count(*) from t_integral
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update integral
+    update t_integral
     <set >
       <if test="record.iId != null" >
         i_id = #{record.iId,jdbcType=INTEGER},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update integral
+    update t_integral
     set i_id = #{record.iId,jdbcType=INTEGER},
       u_id = #{record.uId,jdbcType=INTEGER},
       i_number = #{record.iNumber,jdbcType=INTEGER},
@@ -183,7 +183,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Integral" >
-    update integral
+    update t_integral
     <set >
       <if test="uId != null" >
         u_id = #{uId,jdbcType=INTEGER},
@@ -201,7 +201,7 @@
     where i_id = #{iId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Integral" >
-    update integral
+    update t_integral
     set u_id = #{uId,jdbcType=INTEGER},
       i_number = #{iNumber,jdbcType=INTEGER},
       i_time = #{iTime,jdbcType=DATE},
@@ -211,7 +211,7 @@
   
   <!-- 积分分页 -->
   <select id="selectIntegralLimit" resultMap="BaseResultMap" parameterType="java.util.Map">
-    select * from integral i where i.u_id=#{uId}
+    select * from t_integral i where i.u_id=#{uId}
     ORDER BY i_time DESC LIMIT #{pageStart},#{pageSize} 
   </select>
 </mapper>

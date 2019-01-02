@@ -79,7 +79,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from comment
+    from t_comment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,21 +90,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from comment
+    from t_comment
     where e_id = #{eId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from comment
+    delete from t_comment
     where e_id = #{eId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.CommentExample" >
-    delete from comment
+    delete from t_comment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Comment" >
-    insert into comment (e_id, e_parentId, s_id, 
+    insert into t_comment (e_id, e_parentId, s_id,
       u_id, e_pictureName, e_type, 
       e_score, info, e_date)
     values (#{eId,jdbcType=INTEGER}, #{eParentid,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER}, 
@@ -112,7 +112,7 @@
       #{eScore,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, #{eDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Comment" >
-    insert into comment
+    insert into t_comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="eId != null" >
         e_id,
@@ -173,13 +173,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.CommentExample" resultType="java.lang.Integer" >
-    select count(*) from comment
+    select count(*) from t_comment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update comment
+    update t_comment
     <set >
       <if test="record.eId != null" >
         e_id = #{record.eId,jdbcType=INTEGER},
@@ -214,7 +214,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update comment
+    update t_comment
     set e_id = #{record.eId,jdbcType=INTEGER},
       e_parentId = #{record.eParentid,jdbcType=INTEGER},
       s_id = #{record.sId,jdbcType=INTEGER},
@@ -229,7 +229,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Comment" >
-    update comment
+    update t_comment
     <set >
       <if test="eParentid != null" >
         e_parentId = #{eParentid,jdbcType=INTEGER},
@@ -259,7 +259,7 @@
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Comment" >
-    update comment
+    update t_comment
     set e_parentId = #{eParentid,jdbcType=INTEGER},
       s_id = #{sId,jdbcType=INTEGER},
       u_id = #{uId,jdbcType=INTEGER},

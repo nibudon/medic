@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from account
+    from t_account
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from account
+    from t_account
     where m_id = #{mId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from account
+    delete from t_account
     where m_id = #{mId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.AccountExample" >
-    delete from account
+    delete from t_account
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.Account" >
-    insert into account (m_id, u_id, m_time, 
+    insert into t_account (m_id, u_id, m_time,
       m_type, m_amoney)
     values (#{mId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{mTime,jdbcType=DATE}, 
       #{mType,jdbcType=VARCHAR}, #{mAmoney,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.Account" >
-    insert into account
+    insert into t_account
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="mId != null" >
         m_id,
@@ -143,13 +143,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.AccountExample" resultType="java.lang.Integer" >
-    select count(*) from account
+    select count(*) from t_account
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update account
+    update t_account
     <set >
       <if test="record.mId != null" >
         m_id = #{record.mId,jdbcType=INTEGER},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update account
+    update t_account
     set m_id = #{record.mId,jdbcType=INTEGER},
       u_id = #{record.uId,jdbcType=INTEGER},
       m_time = #{record.mTime,jdbcType=DATE},
@@ -183,7 +183,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.Account" >
-    update account
+    update t_account
     <set >
       <if test="uId != null" >
         u_id = #{uId,jdbcType=INTEGER},
@@ -201,7 +201,7 @@
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.Account" >
-    update account
+    update t_account
     set u_id = #{uId,jdbcType=INTEGER},
       m_time = #{mTime,jdbcType=DATE},
       m_type = #{mType,jdbcType=VARCHAR},
@@ -209,7 +209,7 @@
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
   <select id="selectAccountLimit" resultMap="BaseResultMap" parameterType="java.util.Map">
-    select * from account 
+    select * from t_account
 	where u_id=#{uId} ORDER BY m_time DESC LIMIT #{pageStart},#{pageSize} 
   </select>
   

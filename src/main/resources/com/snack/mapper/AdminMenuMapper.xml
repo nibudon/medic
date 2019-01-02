@@ -72,7 +72,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from admin_menu
+    from t_admin_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,25 +83,25 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from admin_menu
+    from t_admin_menu
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from admin_menu
+    delete from t_admin_menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.snack.model.AdminMenuExample" >
-    delete from admin_menu
+    delete from t_admin_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.snack.model.AdminMenu" >
-    insert into admin_menu (id, menu_name)
+    insert into t_admin_menu (id, menu_name)
     values (#{id,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snack.model.AdminMenu" >
-    insert into admin_menu
+    insert into t_admin_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -120,13 +120,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.snack.model.AdminMenuExample" resultType="java.lang.Integer" >
-    select count(*) from admin_menu
+    select count(*) from t_admin_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update admin_menu
+    update t_admin_menu
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -140,7 +140,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update admin_menu
+    update t_admin_menu
     set id = #{record.id,jdbcType=INTEGER},
       menu_name = #{record.menuName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -148,7 +148,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.snack.model.AdminMenu" >
-    update admin_menu
+    update t_admin_menu
     <set >
       <if test="menuName != null" >
         menu_name = #{menuName,jdbcType=VARCHAR},
@@ -157,7 +157,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snack.model.AdminMenu" >
-    update admin_menu
+    update t_admin_menu
     set menu_name = #{menuName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
