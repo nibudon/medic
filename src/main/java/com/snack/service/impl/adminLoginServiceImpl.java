@@ -1,6 +1,7 @@
 package com.snack.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,10 @@ public class adminLoginServiceImpl implements adminLoginService{
 	
 	@Autowired
 	private PermissionMapper permissionDao;
+
+	public int alterPass(Map<String,Object> map){
+		return adminDao.alterPass(map);
+	}
 
 	@Override
 	public List<Admin> adminLogin(Admin admin) {

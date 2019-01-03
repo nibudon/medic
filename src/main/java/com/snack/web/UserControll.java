@@ -251,6 +251,13 @@ public class UserControll {
 	public String mainToAdminuser(){
 		return "admin/persionInfo/adminInfo";
 	}
+
+	//去修改密码的页面
+	@RequestMapping("toAlterPass.html")
+	public String toAlertPass(){
+		return "admin/persionInfo/alterPass";
+	}
+
 	//加载管理员信息
 	@RequestMapping("mainSelectAdminuser")
 	@ResponseBody

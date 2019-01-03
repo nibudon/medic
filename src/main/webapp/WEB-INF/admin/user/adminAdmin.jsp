@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,10 +19,12 @@
 		<div ng-controller="adminAdminCtrl">
 		                             用户名:<input class="text-center" id="adUsername">
                                              角色名:<select id="roleName">
-                               <option value="">全部</option>   
-                               <option value="超级管理员">超级管理员</option>  
-                               <option value="普通管理员">普通管理员</option>
-                               <option value="小角色">小角色</option>               
+                               <option value="">全部</option>
+								<c:if test="${not empty rList}">
+									<c:forEach items="${rList}" var="role">
+										<option value="${role.roleId}">${role.roleName}</option>
+									</c:forEach>
+								</c:if>
                              </select>
                              <button id="serchAdmin">搜索</button>
                              <button id="newAdmin">新建</button>
@@ -63,8 +66,15 @@
                             			<td>角色选择:</td>
                             			<td>
 	                            			<select id="roleIdOne">
-				                                <option value="2">普通管理员</option>
-				                                <option value="3">小角色</option>                
+				                                <%--<option value="2">普通管理员</option>
+				                                <option value="3">小角色</option>--%>
+												<c:if test="${not empty rList}">
+													<c:forEach items="${rList}" var="role">
+														<c:if test="${role.roleId != '1' }">
+															<option value="${role.roleId}">${role.roleName}</option>
+														</c:if>
+													</c:forEach>
+												</c:if>
 	                            			</select>
                             			</td>
                             		</tr>

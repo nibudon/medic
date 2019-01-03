@@ -1,10 +1,13 @@
 package com.snack.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.snack.model.Role;
+import com.snack.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,10 @@ public class AdminUserControll {
 	
 	@Autowired
 	private adminUserService adminUserService;
-	
+
+	@Autowired
+	private RoleService service;
+
 	@RequestMapping("mainToUserinfo")
 	public String mainToUserinfo(){
 		return "admin/user/adminUserinfo";
@@ -68,10 +74,13 @@ public class AdminUserControll {
 	}
 	
 	@RequestMapping("mainToAdmin")
-	public String mainToAdmin(){
+	public String mainToAdmin(HttpServletRequest request){
+		List<Role> rList=null;
+		rList=service.getAllRoles();
+		request.setAttribute("rList",rList);
 		return "admin/user/adminAdmin";
 	}
-	
+
 	//加载用户
 	@RequestMapping("adminAdminLimit")
 	@ResponseBody

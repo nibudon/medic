@@ -251,6 +251,7 @@
 	 a.ad_id as adId,a.ad_username as adUsername,u.u_username as uUsername
 	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
 	LEFT JOIN t_admin a on a.ad_id=o.e_id
+    LEFT JOIN t_role tr on tr.role_id=a.role_id
 	LEFT JOIN t_userinfo  u on u.u_id=o.u_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
@@ -262,8 +263,11 @@
 	       <if test="oTimeEnd !=null and oTimeEnd !='' ">
 	       		<![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
 	       </if>
-	       <if test="adUserName != '' ">
+	       <!--<if test="adUserName != '' ">
 	       		and a.ad_username=#{adUserName}
+	       </if>-->
+            <if test="adRoleId != '' ">
+	       		and tr.role_id=#{adRoleId}
 	       </if>
 	    </where>
 	ORDER BY o_type ,o.o_time  DESC LIMIT #{pageStart},#{pageSize} 
@@ -275,6 +279,7 @@
 	 a.ad_id as adId,a.ad_username as adUsername,u.u_username as uUsername
 	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
 	LEFT JOIN t_admin a on a.ad_id=o.e_id
+    LEFT JOIN t_role tr on tr.role_id=a.role_id
 	LEFT JOIN t_userinfo  u on u.u_id=o.u_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
@@ -286,9 +291,12 @@
 	       <if test="oTimeEnd !=null and oTimeEnd !='' ">
 	       		<![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
 	       </if>
-	       <if test="adUserName != '' ">
+	       <!--<if test="adUserName != '' ">
 	       		and a.ad_username=#{adUserName}
-	       </if>
+	       </if>-->
+            <if test="adRoleId != '' ">
+                and tr.role_id=#{adRoleId}
+            </if>
 	    </where>
 	ORDER BY o_type ,o.o_time  DESC 
   </select>
@@ -296,6 +304,7 @@
     SELECT count(*)
 	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
 	LEFT JOIN t_admin a on a.ad_id=o.e_id
+    LEFT JOIN t_role tr on tr.role_id=a.role_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
 	      		and o.o_id=#{oId}
@@ -306,15 +315,19 @@
 	       <if test="oTimeEnd !=null and oTimeEnd !='' ">
 	       		<![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
 	       </if>
-	       <if test="adUserName != '' ">
+	       <!--<if test="adUserName != '' ">
 	       		and a.ad_username=#{adUserName}
-	       </if>
+	       </if>-->
+            <if test="adRoleId != '' ">
+                and tr.role_id=#{adRoleId}
+            </if>
 	    </where>
 	</select>
   <select id="countAdminOrder"  parameterType="java.util.Map" resultType="java.lang.Integer" >
     SELECT count(*)
 	from `t_order` o INNER JOIN t_receiptinfo r on o.o_id=r.o_id
 	LEFT JOIN t_admin a on a.ad_id=o.e_id
+    LEFT JOIN t_role tr on tr.role_id=a.role_id
 	    <where>
 	       <if test="oId != null and oId != '' ">
 	      		and o.o_id=#{oId}
@@ -325,9 +338,12 @@
 	       <if test="oTimeEnd !=null and oTimeEnd !='' ">
 	       		<![CDATA[AND o.o_time  <= #{oTimeEnd} ]]>
 	       </if>
-	       <if test="adUserName != '' ">
+	       <!--<if test="adUserName != '' ">
 	       		and a.ad_username=#{adUserName}
-	       </if>
+	       </if>-->
+            <if test="adRoleId != '' ">
+                and tr.role_id=#{adRoleId}
+            </if>
 	    </where>
 	</select>
 	 <delete id="deleteAdminOrder" parameterType="java.lang.String" > 

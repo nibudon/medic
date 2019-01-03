@@ -10,6 +10,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.snack.model.Role;
+import com.snack.service.RoleService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +40,17 @@ public class AdminOrderControll {
 	private adminOrderService adminOrderService;
 	
 	@Autowired
-	private userService userService; 
+	private userService userService;
+
+	@Autowired
+	private RoleService roleService;
 	
 	
 	@RequestMapping("mainToAdminOrder")
-	public String mainToAdminOrder(){
+	public String mainToAdminOrder(HttpServletRequest request){
+		List<Role> roleList=null;
+		roleList=roleService.getAllRoles();
+		request.setAttribute("rList",roleList);
 		return "admin/order/adminOrder";
 	} 
 	
@@ -57,7 +65,7 @@ public class AdminOrderControll {
 			map.put("oId",oId);
 			map.put("oTimeStart",oTimeStart);
 			map.put("oTimeEnd",oTimeEnd);
-			map.put("adUserName",adUserName);
+			map.put("adRoleId",adUserName);
 		PageHelp<DoAdminOrder> pageHelp= adminOrderService.selectAdminOrderLimit(map);
 		DataTables datatable=new DataTables();
 		datatable.setData(pageHelp.getList());

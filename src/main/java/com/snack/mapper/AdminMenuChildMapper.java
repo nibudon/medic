@@ -4,7 +4,9 @@ import com.snack.model.AdminMenuChild;
 import com.snack.model.AdminMenuChildExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AdminMenuChildMapper {
     int countByExample(AdminMenuChildExample example);
 

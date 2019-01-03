@@ -9,8 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AdminMapper {
+
+    int alterPass(Map<String,Object> map);
+
     int countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);

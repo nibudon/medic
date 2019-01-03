@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,8 +24,11 @@
         			 订单号:<input class="text-center" id="oId">
                                          操作员:<select id="adUserName">
                             <option value="">全部</option>
-                           	<option value="超级管理员">超级管理员</option>  
-                           	<option value="普通管理员">普通管理员</option>              
+							   <c:if test="${not empty rList}">
+								   <c:forEach items="${rList}" var="role">
+									   <option value="${role.roleId}">${role.roleName}</option>
+								   </c:forEach>
+							   </c:if>
                           </select>
                                          下单日期范围:<input class="text-center" type="text" class="demo-input" id="oTimeStart">
                 -<input class="text-center" type="text" class="demo-input" id="oTimeEnd">

@@ -67,6 +67,9 @@
   <sql id="Base_Column_List" >
     role_id, role_name, role_info
   </sql>
+  <select id="getAllRoles" resultMap="BaseResultMap" >
+    select role_id, role_name, role_info from t_role
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.snack.model.RoleExample" >
     select
     <if test="distinct" >

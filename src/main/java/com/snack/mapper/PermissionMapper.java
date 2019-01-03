@@ -4,7 +4,9 @@ import com.snack.model.Permission;
 import com.snack.model.PermissionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PermissionMapper {
     int countByExample(PermissionExample example);
 

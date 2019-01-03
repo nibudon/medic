@@ -4,8 +4,13 @@ import com.snack.model.Role;
 import com.snack.model.RoleExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RoleMapper {
+
+    List<Role> getAllRoles();
+
     int countByExample(RoleExample example);
 
     int deleteByExample(RoleExample example);
