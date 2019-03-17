@@ -14,7 +14,7 @@ import com.snack.model.Address;
 
 /** 
  * ClassName: MedicineTypeMapper <br/> 
- * Function: TODO 功能描述 <br/> 
+ * Function: 药材采购商地址管理映射 <br/>
  * date: 2018年11月12日 下午9:36:04 <br/> 
  * 
  * @author 倪卟懂 
