@@ -36,7 +36,7 @@ public class MedicineTypeController {
 	@Autowired
 	private MedicineTypeService medicineTypeService;
 	
-	@RequestMapping("/getAllTypes.html")
+	@RequestMapping(value = "/getAllTypes.html",produces = {"text/html;charset=utf-8"})
 	@ResponseBody
 	public String getAllTypes() {
 		List<MedicineType> list=medicineTypeService.getAllTypes();
