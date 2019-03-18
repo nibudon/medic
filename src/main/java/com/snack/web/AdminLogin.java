@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +29,8 @@ public class AdminLogin {
 	
 	@Autowired
 	private AccountMapper accountMapper;
-	
+
+	private Logger logger = LoggerFactory.getLogger(AdminLogin.class);
 	//登录login
 	@RequestMapping("adminLogin")
 	public String adminLogin(){
@@ -48,6 +51,7 @@ public class AdminLogin {
 			List<Permission> userPer = adminLoginService.selectRolePermission(adminSelect.get(0).getRoleId());
 			request.getSession().setAttribute("allPer", allPer);
 			request.getSession().setAttribute("userPer", userPer);
+			logger.info("admin---"+admin.getAdUsername()+"----logined!");
 			return "redirect:adminGoMain";
 		}
 		request.setAttribute("msg","用户名或密码错误");
@@ -66,7 +70,9 @@ public class AdminLogin {
 	@RequestMapping("adminMainToLoginOut")
 	@ResponseBody
 	public String adminMainToLoginOut(HttpServletRequest request){
+		String adminName = request.getSession().getAttribute("adminName").toString();
 		request.getSession().removeAttribute("adminName");
+		logger.info("admin---"+adminName+"----login out !");
 		return ResponseUtil.successToClient();
 	}
 
