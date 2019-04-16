@@ -42,26 +42,38 @@ public class SorderController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String addSorder(Snackinfo snackinfo,HttpSession session) {
-			
-			System.out.println("-------addCar()------"+snackinfo.getsNumber());
-			
-			// 1:通过 product.id获取当前的商品数据
-			Snackinfo findSnackinfo = sorderService.snackfindById(snackinfo.getsId());
-			
-			findSnackinfo.setsNumber(snackinfo.getsNumber());
-			
-			//2:判断当前session是否有购物车，如果没有则创建
-			if (session.getAttribute("receiptinfo")==null) {
-				
-				//创建购物车，存到session中
-				session.setAttribute("receiptinfo", new Receiptinfo(new HashSet<Orderdetail>()));
+
+			//判断该当前是否登录
+			Object user = session.getAttribute("frontuserId");
+			String uid = user == null?"":user.toString();
+			if(null != uid && !"".equals(uid)){
+				System.out.println("-------addCar()------"+snackinfo.getsNumber());
+
+				// 1:通过 product.id获取当前的商品数据
+				Snackinfo findSnackinfo = sorderService.snackfindById(snackinfo.getsId());
+
+				findSnackinfo.setsNumber(snackinfo.getsNumber());
+
+				//2:判断当前session是否有购物车，如果没有则创建
+				if (session.getAttribute("receiptinfo")==null) {
+
+					//创建购物车，存到session中
+					session.setAttribute("receiptinfo", new Receiptinfo(new HashSet<Orderdetail>()));
+				}
+				Receiptinfo receiptinfo = (Receiptinfo)session.getAttribute("receiptinfo");
+
+				//3:把商品信息转化为sorder,并且添加到购物车中(判断购物车是否重复)
+				receiptinfo = sorderService.addSorder(receiptinfo, findSnackinfo);
+				receiptinfo.setoPhone(cluTotal(receiptinfo));
+				return "redirect:gotocar";
+
+			}else{
+
+				return "redirect:/shop/userLoginGet";
+
 			}
-			Receiptinfo receiptinfo = (Receiptinfo)session.getAttribute("receiptinfo");
 			
-			//3:把商品信息转化为sorder,并且添加到购物车中(判断购物车是否重复)
-			receiptinfo = sorderService.addSorder(receiptinfo, findSnackinfo);
-			receiptinfo.setoPhone(cluTotal(receiptinfo));
-			return "redirect:gotocar";
+
 		}
 	
 	
