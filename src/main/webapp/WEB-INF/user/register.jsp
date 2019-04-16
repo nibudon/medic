@@ -190,7 +190,7 @@ $(document).ready(function(){
 										</td>
 									</tr>
 									
-									<tr>
+									<%--<tr>
 										<th>
 											<span class="requiredField">*</span>地址:
 										</th>
@@ -198,7 +198,7 @@ $(document).ready(function(){
 											<input type="text" id="addr" name="uAddress" class="text" maxlength="200">
 											<!-- <span>已经根据您位置定位,如有错误请修改！</span> -->
 										</td>
-									</tr>
+									</tr>--%>
 									<tr>
 										<th>&nbsp;
 										</th>
