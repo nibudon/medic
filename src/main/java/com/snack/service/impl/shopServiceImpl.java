@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,9 @@ import com.snack.utils.PageHelp;
 
 @Service
 public class shopServiceImpl implements shopService{
-	
+
+	Logger loger = LoggerFactory.getLogger(shopServiceImpl.class);
+
 	@Autowired
     private	SnackinfoMapper snackinfoDao;
 	
@@ -39,6 +43,8 @@ public class shopServiceImpl implements shopService{
 //		 map.put("datetwo", DateUtil.getDateString(lastDayOfMonth));
 		 String dateone=DateUtil.getDateString(firstDayOfMonth);
 		 String datetwo=DateUtil.getDateString(lastDayOfMonth);
+		loger.info("热销商品===========时间1===="+dateone);
+		loger.info("热销商品===========时间2===="+datetwo);
 		 List<Snackinfo> hotList = snackinfoDao.selectHot(dateone,datetwo);
 		 return hotList;
 	}
