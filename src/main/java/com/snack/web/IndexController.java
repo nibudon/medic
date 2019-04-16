@@ -30,4 +30,9 @@ public class IndexController {
         return "admin/adminLogin";
     }
 
+    @RequestMapping("paste.html")
+    public String toPaste(HttpServletRequest request){
+        return "redirect:/paste.jsp";
+    }
+
 }
