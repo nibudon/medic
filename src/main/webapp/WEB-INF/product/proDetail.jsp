@@ -75,7 +75,7 @@ $(document).ready(function(){
 		</div>
 		<div class="phone">
 			电话热线:
-			<strong>15328393101</strong>
+			<strong>153****3101</strong>
 		</div>
 		<div class="weixin">
 				<img src="${pageContext.request.contextPath}/image/trimImg/wxBZ.png" alt="微信图标" class="weixin-icon"/>

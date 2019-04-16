@@ -107,7 +107,7 @@ $(document).ready(function(){
 		</div>
 		<div class="phone">
 			电话热线:
-			<strong>96008/53277764</strong>
+			<strong>153****3101</strong>
 		</div>
 		<div class="weixin">
 				<img src="${pageContext.request.contextPath}/image/trimImg/wxBZ.png" alt="微信图标" class="weixin-icon"/>
@@ -119,7 +119,7 @@ $(document).ready(function(){
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
-				<img id="logoPic" src="${pageContext.request.contextPath}/image/trimImg/snackBZ.jpg" style="display: block;" alt="食尚零食"/>
+				<img id="logoPic" src="${pageContext.request.contextPath}/image/trimImg/snackBZ.jpg" style="display: block;" alt="榆中药材协会"/>
 		</div>
 	</div>
 	<div class="span9">
