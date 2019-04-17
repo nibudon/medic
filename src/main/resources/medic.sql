@@ -2,7 +2,7 @@
 SQLyog Enterprise - MySQL GUI v8.14 
 MySQL - 5.5.53 : Database - medic
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -201,7 +201,7 @@ CREATE TABLE `t_order` (
   `o_time` date DEFAULT NULL,
   `o_type` int(11) DEFAULT NULL COMMENT '-1:未发货；1:完成，0：已发货',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 /*Data for the table `t_order` */
 
@@ -220,12 +220,15 @@ insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (141,
 insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (142,'201812125917',19,NULL,'2018-12-12',-2);
 insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (143,'201812139719',23,NULL,'2018-12-13',-2);
 insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (144,'201812138688',19,NULL,'2018-12-13',-2);
-insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (145,'201812165327',19,13,'2018-12-16',0);
-insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (146,'201812244248',19,2,'2018-12-24',0);
-insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (147,'201901027981',19,2,'2019-01-02',0);
+insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (145,'201812165327',19,13,'2018-12-16',1);
+insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (146,'201812244248',19,2,'2018-12-24',1);
+insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (147,'201901027981',19,2,'2019-01-02',1);
 insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (148,'201901024684',27,2,'2019-01-02',0);
 insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (149,'201902175574',19,NULL,'2019-02-17',-1);
 insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (150,'201902176198',28,NULL,'2019-02-17',-1);
+insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (151,'201904177478',19,2,'2019-04-17',1);
+insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (152,'201904175568',19,2,'2019-04-17',1);
+insert  into `t_order`(`id`,`o_id`,`u_id`,`e_id`,`o_time`,`o_type`) values (153,'201904175491',19,2,'2019-04-17',1);
 
 /*Table structure for table `t_orderdetail` */
 
@@ -238,7 +241,7 @@ CREATE TABLE `t_orderdetail` (
   `o_num` int(11) DEFAULT NULL,
   `o_money` double DEFAULT NULL,
   PRIMARY KEY (`d_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 /*Data for the table `t_orderdetail` */
 
@@ -275,6 +278,10 @@ insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (187
 insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (188,'201901024684',81,1,2.1);
 insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (189,'201902175574',46,3,16);
 insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (190,'201902176198',33,1,24);
+insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (191,'201904177478',28,3,30);
+insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (192,'201904175568',81,1,2.1);
+insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (193,'201904175491',29,2,8);
+insert  into `t_orderdetail`(`d_id`,`o_id`,`s_id`,`o_num`,`o_money`) values (194,'201904175491',27,1,24);
 
 /*Table structure for table `t_permission` */
 
@@ -324,7 +331,7 @@ CREATE TABLE `t_receiptinfo` (
   `o_phone` varchar(255) DEFAULT NULL,
   `o_address` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`r_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 /*Data for the table `t_receiptinfo` */
 
@@ -352,6 +359,9 @@ insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) value
 insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) values (154,'201901024684','张汝洪','15328393101','陕西省西安市雁塔区丈八沟街道西北工业大学研发中心西安软件园(科技二路)');
 insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) values (155,'201902175574','倪卟懂','15228627334','陕西省西安市雁塔区丈八沟街道零壹广场A座西安软件园(科技二路)');
 insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) values (156,'201902176198','张汝洪','15226853652','陕西省西安市雁塔区电子城街道子午大道9号江林新城C区');
+insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) values (157,'201904177478','倪卟懂','15228627334','陕西省西安市雁塔区丈八沟街道零壹广场A座西安软件园(科技二路)');
+insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) values (158,'201904175568','倪卟懂','15228627334','陕西省西安市雁塔区丈八沟街道零壹广场A座西安软件园(科技二路)');
+insert  into `t_receiptinfo`(`r_id`,`o_id`,`o_name`,`o_phone`,`o_address`) values (159,'201904175491','倪卟懂','15228627334','陕西省西安市雁塔区丈八沟街道零壹广场A座西安软件园(科技二路)');
 
 /*Table structure for table `t_record` */
 
@@ -366,37 +376,37 @@ CREATE TABLE `t_record` (
 
 /*Data for the table `t_record` */
 
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (13,20,'2018-02-16',2);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (14,23,'2018-03-27',4);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (15,20,'2018-03-27',6);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (16,20,'2018-03-27',2);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (17,23,'2018-03-27',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (18,21,'2018-03-27',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (19,20,'2018-03-27',2);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (20,21,'2018-03-27',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (21,24,'2018-03-27',3);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (22,23,'2018-03-28',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (23,21,'2018-03-28',10);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (24,21,'2018-03-28',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (25,20,'2018-03-28',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (26,24,'2018-03-28',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (27,24,'2018-03-28',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (28,23,'2018-03-31',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (29,23,'2018-04-01',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (30,20,'2018-04-01',6);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (31,24,'2018-04-01',3);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (32,20,'2018-04-01',6);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (33,23,'2018-04-01',1);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (34,62,'2018-04-01',4);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (35,27,'2018-04-01',5);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (36,45,'2018-04-01',3);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (37,51,'2018-04-17',4);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (38,34,'2018-04-17',4);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (39,26,'2018-04-01',8);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (40,30,'2018-04-01',10);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (41,51,'2018-04-30',3);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (42,33,'2018-04-30',4);
-insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (43,26,'2018-04-30',3);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (13,20,'2019-02-16',2);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (14,23,'2019-03-27',4);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (15,20,'2019-03-27',6);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (16,20,'2019-03-27',2);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (17,23,'2019-03-27',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (18,21,'2019-03-27',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (19,20,'2019-03-27',2);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (20,21,'2019-03-27',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (21,24,'2019-03-27',3);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (22,23,'2019-03-28',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (23,21,'2019-03-28',10);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (24,21,'2019-03-28',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (25,20,'2019-03-28',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (26,24,'2019-03-28',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (27,24,'2019-03-28',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (28,23,'2019-03-31',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (29,23,'2019-04-01',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (30,20,'2019-04-01',6);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (31,24,'2019-04-01',3);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (32,20,'2019-04-01',6);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (33,23,'2019-04-01',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (34,62,'2019-04-01',4);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (35,27,'2019-04-01',5);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (36,45,'2019-04-01',3);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (37,51,'2019-04-17',4);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (38,34,'2019-04-17',4);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (39,26,'2019-04-01',8);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (40,30,'2019-04-01',10);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (41,51,'2019-04-30',3);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (42,33,'2019-04-30',4);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (43,26,'2019-04-30',3);
 insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (44,56,'2018-04-30',1);
 insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (45,26,'2018-10-25',1);
 insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (46,26,'2018-10-25',5);
@@ -417,6 +427,10 @@ insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (
 insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,59,'2019-01-02',1);
 insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,81,'2019-01-02',1);
 insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,31,'2019-01-02',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,28,'2019-04-17',3);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,81,'2019-04-17',1);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,29,'2019-04-17',2);
+insert  into `t_record`(`record_id`,`s_id`,`recordDate`,`recordNumber`) values (NULL,27,'2019-04-17',1);
 
 /*Table structure for table `t_role` */
 
@@ -518,9 +532,9 @@ insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_p
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (24,'201803272746','鱼腥草',25,'5','yuxingcao.jpg','大本营','浙江',0,NULL,'2018-03-14','12',1,'2018-03-27','清热解毒；排脓消痈；利尿通淋肺痈吐脓；痰热喘咳；喉哦；热痢；痈肿疮毒；热淋。','1',9992);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (25,'201804174136','薄荷',10,'4','bohe.jpg','咪咪','广东',0,NULL,'2018-04-15','12',1,'2018-04-17','风热表证；头痛目赤；咽喉肿痛；麻疹不透；陷疹瘙痒；肝郁胁痛。','3',99999);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (26,'201804172196','酸枣仁',20,'8','suanzaoren.jpg','乐事','上海',0,NULL,'2018-04-17','12',1,'2018-04-17','宁心安神，敛汗生津。虚烦不眠，惊悸健忘，虚汗烦渴。','6',9952);
-insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (27,'201804171833','葛根',30,'8','gegen.jpg','宇润','安徽',0,NULL,'2018-04-17','12',1,'2018-04-17','发表退热，生津止渴。“疗肌解表甘葛先而柴胡次之”，见《药性赋》。表症发热无汗，头项强痛，热病口渴，消渴，斑疹不透，脾虚泄泻。','3',9995);
-insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (28,'201804174852','远志',30,'10','yuanzhi.jpg','董小姐','海南',0,NULL,'2018-04-17','18',1,'2018-04-17','惊悸健忘，痈疽疮肿，咳嗽多痰，失眠多梦。','6',998);
-insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (29,'201804171022','白芨',10,'8','baiji.jpg','旺旺','北京',1,NULL,'2018-04-17','12',1,'2018-04-17','咯血；吐血；衄血；便血；外伤出血；痈疮肿毒；烫灼伤；手足皲裂；肛裂。','2',200000);
+insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (27,'201804171833','葛根',30,'8','gegen.jpg','宇润','安徽',0,NULL,'2018-04-17','12',1,'2018-04-17','发表退热，生津止渴。“疗肌解表甘葛先而柴胡次之”，见《药性赋》。表症发热无汗，头项强痛，热病口渴，消渴，斑疹不透，脾虚泄泻。','3',9994);
+insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (28,'201804174852','远志',30,'10','yuanzhi.jpg','董小姐','海南',0,NULL,'2018-04-17','18',1,'2018-04-17','惊悸健忘，痈疽疮肿，咳嗽多痰，失眠多梦。','6',995);
+insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (29,'201804171022','白芨',10,'8','baiji.jpg','旺旺','北京',1,NULL,'2018-04-17','12',1,'2018-04-17','咯血；吐血；衄血；便血；外伤出血；痈疮肿毒；烫灼伤；手足皲裂；肛裂。','2',199998);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (30,'201804172485','白芷',55,'8','baizhi.jpg','甘源','浙江',1,NULL,'2018-04-17','12',1,'2018-04-17','感冒头痛；眉棱骨痛；牙痛；鼻塞；鼻渊；湿胜久泻；妇女白带；痈疽疮疡；毒蛇咬伤。','3',9000);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (31,'201804172109','路路通',20,'8','lulutong.jpg','旺旺','浙江',0,NULL,'2018-04-18','12',1,'2018-04-17','通经、利水、除湿热痹痛。月经不调、周身痹痛、小便不利。现多以煎水饮，治耳聋。','4',9999);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (32,'201804174170','大黄',30,'10','dahuang.jpg','妙妙','浙江',0,NULL,'2018-04-19','12',1,'2018-04-17','实热便秘；热结胸痞；湿热 泻痢；黄疸；淋病；水肿腹满；小便不利；目赤；咽喉肿痛；口舌生疮；胃热呕吐；吐血；咯血；衄血；便血；尿血；蓄血；经闭；产后瘀滞。','5',10000);
@@ -567,7 +581,7 @@ insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_p
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (78,'201804171055','龙须草',30,'8','longxucao.jpg','恰恰','浙江',0,NULL,'2018-04-07','12',1,'2018-04-17','清热解毒，利尿，止痛。治小便淋涩，黄水疮。','1',10000);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (79,'201804172661','防风',20,'8','fangfeng.jpg','旺旺','浙江',1,NULL,'2018-03-20','18',1,'2018-04-17','外感风寒；头痛身痛；风湿痹痛；骨节酸痛；腹痛泄泻；肠风下血；破伤风；风疹瘙痒；疮疡初起。','3',10000);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (80,'201804173962','浮萍',10,'7','fuping.jpg','旺旺','浙江',0,NULL,'2018-04-04','12',1,'2018-04-17','发表透疹，利水退肿。感冒发烧，斑疹不透，肌肤肿胀，小便不利。','3',10000);
-insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (81,'201807029034','八角',21,'1','bajiao.jpg','旺旺','浙江杭州',0,NULL,'2018-04-17','12',1,'2018-07-02','32','7',9996);
+insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (81,'201807029034','八角',21,'1','bajiao.jpg','旺旺','浙江杭州',0,NULL,'2018-04-17','12',1,'2018-07-02','32','7',9995);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (82,'201811206178','板蓝根',23,'1','banlangen.jpg','安安','四川',0,NULL,'2018-11-05','3',1,'2018-11-20','清热解毒，解心胃热毒。流感、热病发斑、扁桃体炎、腮腺炎、流脑、肠炎、菌痢，但主要用于大头瘟、颜面丹毒和腮腺炎。','1',45);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (83,'201811208394','槐花',40,'8','huaihua.jpg','活到老','四川',0,NULL,'2018-11-01','12',1,'2018-11-20','凉血止血，清肝明目。常用于高血压头晕，痔疮及肠风便血，血痢等出血症。','2',45);
 insert  into `t_snackinfo`(`s_id`,`s_batch`,`s_name`,`s_price`,`s_discount`,`s_pictureUrl`,`s_brand`,`s_place`,`s_Imported`,`s_score`,`s_pDate`,`s_qDate`,`state`,`s_createDate`,`s_dese`,`s_type`,`s_number`) values (84,'201811206779','木瓜',23,'8','mugua.jpg','好医生','四川',0,NULL,'2018-11-01','12',1,'2018-11-20','风湿痹痛，肢体酸重，筋脉拘挛，吐泻转筋，脚气水肿。','4',23);
@@ -590,11 +604,11 @@ CREATE TABLE `t_userinfo` (
   `u_address` varchar(255) DEFAULT NULL COMMENT '地址',
   `u_score` int(11) DEFAULT NULL COMMENT '积分总数',
   PRIMARY KEY (`u_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 /*Data for the table `t_userinfo` */
 
-insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (19,'张汝洪','nibudon','0659c7992e268962384eb17fafe88364','9315.1','15328393101','729686144@qq.com','男','2018-11-07','陕西西安',100);
+insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (19,'张汝洪','nibudon','0659c7992e268962384eb17fafe88364','9183.0','15328393101','729686144@qq.com','男','2018-11-07','陕西西安',100);
 insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (23,'郑裕琳','郑裕琳','583123ca508f853b3524a2faf2c7c87c','9981.6','18215522446','1944245223@qq.com','女','2018-11-20','四川省成都市',NULL);
 insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (24,'lisuduo','lisuduo','827ccb0eea8a706c4c34a16891f84e7b','9910.4','13919991435','435752897@qq.com','女','2018-11-30','yuzhong',NULL);
 insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (25,'张无忌','zhangwuji','0659c7992e268962384eb17fafe88364','10000','15228654563','zhangwj@qq.com','男','2018-12-25','光明顶',NULL);
@@ -602,6 +616,7 @@ insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money
 insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (27,'郑裕琳','zhengyulin','0659c7992e268962384eb17fafe88364','9997.9','15228627334','729686144@qq.com','女','2019-01-02','四川成都',NULL);
 insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (28,'张汝洪','test20190217','26188a923c2c28e9988a7b0f57ea6b86','10000','15326851236','729686144@qq.com','男','2019-02-17','陕西',NULL);
 insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (29,'倪卟懂','nibudon1','0659c7992e268962384eb17fafe88364','10000','15236525632','123@qq.com','男','2019-02-25','陕西',NULL);
+insert  into `t_userinfo`(`u_id`,`u_realname`,`u_username`,`u_password`,`u_money`,`u_phone`,`u_email`,`u_sex`,`u_resgistDate`,`u_address`,`u_score`) values (30,'倪卟懂','nibudo','e10adc3949ba59abbe56e057f20f883e','10000','15328393101','123@qq.com','男','2019-04-16','',NULL);
 
 /* Procedure structure for procedure `haha` */
 

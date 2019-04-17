@@ -38,7 +38,7 @@ public interface SnackinfoMapper {
     //查询最新商品
     List<Snackinfo> selectNew();
     
-    //查询膨化类
+    //查询
     List<Snackinfo> selectPuffing(Snackinfo info);
     
     List<DoSnack> selectOrderSnack(Map<Object, Object> map);
