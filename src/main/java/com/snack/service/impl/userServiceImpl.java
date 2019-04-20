@@ -72,6 +72,9 @@ public class userServiceImpl implements userService{
 		return userinfoDao.selectByPrimaryKey(userinfo.getuId());
 	}
 
+	public int updatePass(Integer uid,String newPass){
+		return userinfoDao.updatePass(uid,newPass);
+	}
 	
 	//修改个人信息
 //	@Override

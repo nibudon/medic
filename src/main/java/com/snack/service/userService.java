@@ -14,6 +14,7 @@ public interface userService {
 	public Userinfo selectUserOne(Userinfo userinfo);
 	public int addUserOne(Userinfo userinfo);
 	public Userinfo selectUserinfoById(Userinfo userinfo);
+	public int updatePass(Integer uid,String newPass);
 	public int updateUserinfoById(Userinfo userinfo);
 	public PageHelp<Integral> selectIntegralLimit(Map<Object, Object> map);
 	public PageHelp<Account>  selectAccountLimit(Map<Object, Object> map);

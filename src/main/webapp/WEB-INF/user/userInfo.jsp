@@ -116,11 +116,11 @@
 									<input type="text" id="uUsername" name="uUsername" class="text" maxlength="20" value="${userOne.uUsername}">
 									<span style="color:red" id="msg"></span></td>
 						</tr>
-						<tr>
+						<%--<tr>
 							<td>密&nbsp;&nbsp;码:</td>
 							<td><input type="text" id="uPassword" name="uPassword" class="text" maxlength="20" autocomplete="off">
                                     <span style="color:red" id="passmsg"></span></td>
-						</tr>
+						</tr>--%>
 						<tr>
 							<td>E-mail:</td>
 							<td><input type="text" id="uEmail" name="uEmail" class="text" maxlength="200">

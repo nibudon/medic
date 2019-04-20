@@ -19,6 +19,8 @@ public interface UserinfoMapper {
 
     int insertSelective(Userinfo record);
 
+    public int updatePass(@Param("uid") Integer uid,@Param("newPass") String newPass);
+
     List<Userinfo> selectByExample(UserinfoExample example);
 
     Userinfo selectByPrimaryKey(Integer uId);

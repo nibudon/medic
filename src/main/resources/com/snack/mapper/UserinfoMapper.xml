@@ -327,4 +327,8 @@
   	order BY u.u_resgistDate 
   	LIMIT #{pageStart},#{pageSize} 
   </select>
+  <!--修改密码-->
+  <update id="updatePass">
+    UPDATE t_userinfo SET u_password=#{newPass} WHERE u_id=#{uid}
+  </update>
 </mapper>

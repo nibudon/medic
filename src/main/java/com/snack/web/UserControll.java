@@ -54,6 +54,42 @@ public class UserControll {
 		 aj.setTag(rs);
 		 return aj;
 	}
+
+	@RequestMapping("alterPass.html")
+	public String toAlterPass(){
+		return "user/alterPass";
+	}
+
+	@RequestMapping("getUserById.html")
+	@ResponseBody
+	public String getUserById(String uid,String oPass){
+		String result = "{\"correct\":\"false\",\"message\":\"原密码错误!\"}";
+		Userinfo t = new Userinfo();
+		t.setuId(Integer.parseInt(uid));
+		Userinfo u = userService.selectUserinfoById(t);
+		if(null != oPass && !"".equals(oPass)){
+			if(MyMd5.getMd5(oPass).equals(u.getuPassword())){
+				result = "{\"correct\":\"true\",\"message\":\"原密码正确!\"}";
+			}
+		}
+		return result;
+	}
+
+	@RequestMapping("updatePass.html")
+	@ResponseBody
+	public String updatePass(String uid,String newPass){
+		Integer uId = Integer.parseInt(uid);
+		String result = "{\"success\":\"false\",\"message\":\"修改失败!\"}";
+		int r = 0;
+		if(null != newPass && !"".equals(newPass)){
+			newPass = MyMd5.getMd5(newPass);
+			r = userService.updatePass(uId,newPass);
+		}
+		if(r > 0){
+			result = "{\"success\":\"true\",\"message\":\"修改成功!\"}";
+		}
+		return result;
+	}
 	
 	//注册
 	@RequestMapping("addUserRegister")

@@ -133,6 +133,11 @@ $(document).ready(function(){
 								  </tr>
 								  <tr height=20>
 									  <td>
+										  <a style="cursor: pointer;font-size: 15px;color: red;margin-left: 35px;" href="${pageContext.request.contextPath}/user/alterPass.html" target="right">修改密码</a>
+									  </td>
+								  </tr>
+								  <tr height=20>
+									  <td>
 									 	 <a style="cursor: pointer;font-size: 15px;color: red;margin-left: 35px" class="menuChild" href="${pageContext.request.contextPath}/user/userGoOrder" target="right">我的订单</a>
 									  </td>
 								  </tr>
