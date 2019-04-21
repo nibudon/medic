@@ -16,8 +16,6 @@ $(document).ready(function(){
 	        			$("#roleId").val("超级管理员");
 	        		}else if(result.data.roleId==2){
 	        			$("#roleId").val("普通管理员");
-	        		}else{
-	        			$("#roleId").val("小角色");
 	        		}
 	        	}
 	        }

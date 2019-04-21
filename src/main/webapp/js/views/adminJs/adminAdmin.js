@@ -100,10 +100,6 @@ var integralModule = angular.module("adminAdminApp",[]);
    			        			$("#roleIdTwo").attr("disabled",false);
    			        			$("#roleIdTwo").find("option:contains('超级管理员')").remove();
    			        			$(".selector").find("option:contains('普通管理员')").attr("selected",true);
-   			        		}else{
-   			        			$("#roleIdTwo").attr("disabled",false);
-   			        			$("#roleIdTwo").find("option:contains('超级管理员')").remove();
-   			        			$(".selector").find("option:contains('小角色')").attr("selected",true);
    			        		}
    			        		showModal($('#updateAdminModal'));
    			        		}

@@ -104,14 +104,14 @@
                             		</tr>
                             		<tr>
                             			<td>密码:</td>
-                            			<td><input class="text-center" id="adPasswordTwo" ></td>
+                            			<td><input type="password" class="text-center" id="adPasswordTwo" ></td>
                             		</tr>
                             		<tr>
                             			<td>角色选择:</td>
                             			<td>
 	                            			<select id="roleIdTwo" class="selector">
 				                                <option value="2">普通管理员</option>
-				                                <option value="3">小角色</option>  
+				                                <%--<option value="3">小角色</option>  --%>
 	                            			</select>
                             			</td>
                             		</tr>
