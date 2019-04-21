@@ -35,16 +35,21 @@ var integralModule = angular.module("adminAdminApp",[]);
 	   	 				dataType:"text",
 	   	 				success: function (result) {
 		   	 				result = $.parseJSON(result);
-	   			        	if(result.errCode='000000'){
-	   			        		swal("新建成功!","success");
-	   			        		$('#newAdminModal').modal('hide');
-	   			        		createTable();
-	   			        	    document.getElementById("adminForm").reset();
-	   			        	}else{
-	   			        	    swal("新建失败!","error");
-	   			        	    createTable();
-	   			        	    document.getElementById("adminForm").reset();
-	   			        	}
+	   			        	if(result.admin == "false"){
+                                swal("你不是超级管理员，你没有权限进行操作!","error");
+                                createTable();
+							}else{
+                                if(result.errCode='000000'){
+                                    swal("新建成功!","success");
+                                    $('#newAdminModal').modal('hide');
+                                    createTable();
+                                    document.getElementById("adminForm").reset();
+                                }else{
+                                    swal("新建失败!","error");
+                                    createTable();
+                                    document.getElementById("adminForm").reset();
+                                }
+							}
 	   			        },
 		   	 			error:function(){
 		   	 				swal("没有权限!","error");
@@ -65,14 +70,19 @@ var integralModule = angular.module("adminAdminApp",[]);
    			            transformRequest: $scope.processParams
    			        }).success(function (result) {
    			        	//result = $.parseJSON(result);
-   			        	if(result.errCode='000000'){
-   			        		swal("修改成功!","success");
-   			        		$('#updateAdminModal').modal('hide');
-   			        		createTable();
-   			        	}else{
-   			        	    swal("修改失败!","error");
-   			        	    createTable();
-   			        	}
+                        if(result.admin == "false"){
+                            swal("你不是超级管理员，你没有权限进行操作!","error");
+                            createTable();
+                        }else{
+                            if(result.errCode='000000'){
+                                swal("修改成功!","success");
+                                $('#updateAdminModal').modal('hide');
+                                createTable();
+                            }else{
+                                swal("修改失败!","error");
+                                createTable();
+                            }
+						}
    			        })
 				})
 				
@@ -93,6 +103,7 @@ var integralModule = angular.module("adminAdminApp",[]);
    			        		$("#adPasswordTwo").val(result.data.adPassword);
    			        		$("#adUsernameTwo").val(result.data.adUsername);
    			        		if(result.data.roleId==1){
+
    			        			$("#roleIdTwo").append("<option value='1'>超级管理员</option>")
    			        			$("#roleIdTwo").attr("disabled",true);
    			        			$(".selector").find("option:contains('超级管理员')").attr("selected",true);
@@ -132,13 +143,18 @@ var integralModule = angular.module("adminAdminApp",[]);
 	   	 				dataType:"text",
 	   	 				success: function(result){
 	   	 				result = $.parseJSON(result);
-	   			        	if(result.errCode='000000'){
-	   			        		swal("删除成功!","success");
-	   			        		createTable();
-	   			        	}else{
-	   			        	    swal("删除失败!","error");
-	   			        	    createTable();
-	   			        	}
+                            if(result.admin == "false"){
+                                swal("你不是超级管理员，你没有权限进行操作!","error");
+                                createTable();
+							}else{
+                                if(result.errCode='000000'){
+                                    swal("删除成功!","success");
+                                    createTable();
+                                }else{
+                                    swal("删除失败!","error");
+                                    createTable();
+                                }
+							}
 	   	 				},
 		   	 			error:function(){
 		   	 			    swal("没有权限!","error");

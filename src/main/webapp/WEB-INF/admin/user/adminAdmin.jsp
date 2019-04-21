@@ -60,7 +60,7 @@
                             		</tr>
                             		<tr>
                             			<td>密码:</td>
-                            			<td><input class="text-center" id="adPasswordOne"></td>
+                            			<td><input type="password" class="text-center" id="adPasswordOne"></td>
                             		</tr>
                             		<tr>
                             			<td>角色选择:</td>
@@ -126,5 +126,5 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/adminAdmin.js?v=1.0"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/adminAdmin.js?v=1.2"></script>
 </html>

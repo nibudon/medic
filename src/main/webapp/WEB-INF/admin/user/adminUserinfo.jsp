@@ -53,10 +53,10 @@
                         	  <td>用户名:<input type="hidden" id="uId"></td>
                         	  <td><input class="text-center" id="uUsernameTwo"></td>
                         	</tr>
-                        	<tr>
+                        	<%--<tr>
                         	  <td>密码:</td>
                         	  <td><input class="text-center" id="uPassword"></td>
-                        	</tr>
+                        	</tr>--%>
                         	<tr>
                         	  <td>余额:</td>
                         	  <td><input class="text-center" id="uMoney"></td>
@@ -94,5 +94,5 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/adminUserinfo.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/adminUserinfo.js?v=1.0"></script>
 </html>

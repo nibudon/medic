@@ -55,8 +55,13 @@ public class AdminUserControll {
 	//删除用户
 	@RequestMapping("delUserinfoById")
 	@ResponseBody
-	public String delUserinfoById(int uId){
-		return ResponseUtil.successToClient(adminUserService.delUserinfoById(uId));
+	public String delUserinfoById(int uId,HttpServletRequest request){
+		Admin a = (Admin) request.getSession().getAttribute("currentadmin");
+		if(isAdmin(a)) {
+			return ResponseUtil.successToClient(adminUserService.delUserinfoById(uId));
+		}else{
+			return "{\"admin\":\"false\"}";
+		}
 	}
 	
 	//更新加载用户
@@ -69,8 +74,13 @@ public class AdminUserControll {
 	//更新用户
 	@RequestMapping("updateUserinfoById")
 	@ResponseBody
-	public String updateUserinfoById(Userinfo userinfo){
-		return ResponseUtil.successToClient(adminUserService.updateUserinfoById(userinfo));
+	public String updateUserinfoById(Userinfo userinfo,HttpServletRequest request){
+		Admin a = (Admin) request.getSession().getAttribute("currentadmin");
+		if(isAdmin(a)) {
+			return ResponseUtil.successToClient(adminUserService.updateUserinfoById(userinfo));
+		}else{
+			return "{\"admin\":\"false\"}";
+		}
 	}
 	
 	@RequestMapping("mainToAdmin")
@@ -99,16 +109,26 @@ public class AdminUserControll {
 	//新建
 	@RequestMapping("addNewAdmin")
 	@ResponseBody
-	public String addNewAdmin(Admin admin){
-		admin.setAdPassword(MyMd5.getMd5(admin.getAdPassword()));
-		return ResponseUtil.successToClient(adminUserService.addAdmin(admin));
+	public String addNewAdmin(Admin admin,HttpServletRequest request){
+		Admin a = (Admin) request.getSession().getAttribute("currentadmin");
+		if(isAdmin(a)){
+			admin.setAdPassword(MyMd5.getMd5(admin.getAdPassword()));
+			return ResponseUtil.successToClient(adminUserService.addAdmin(admin));
+		}else{
+			return "{\"admin\":\"false\"}";
+		}
 	}
 	
 	//删除用户
 	@RequestMapping("delAdminById")
 	@ResponseBody
-	public String delAdminById(Admin admin){
-		return ResponseUtil.successToClient(adminUserService.delAdmin(admin));
+	public String delAdminById(Admin admin,HttpServletRequest request){
+		Admin a = (Admin) request.getSession().getAttribute("currentadmin");
+		if(isAdmin(a)) {
+			return ResponseUtil.successToClient(adminUserService.delAdmin(admin));
+		}else{
+			return "{\"admin\":\"false\"}";
+		}
 	}
 	
 	//更新加载用户
@@ -121,8 +141,21 @@ public class AdminUserControll {
 	//更新用户
 	@RequestMapping("updateAdminById")
 	@ResponseBody
-	public String updateAdminById(Admin admin){
-		return ResponseUtil.successToClient(adminUserService.updateAdmin(admin));
+	public String updateAdminById(Admin admin,HttpServletRequest request){
+		Admin a = (Admin) request.getSession().getAttribute("currentadmin");
+		if(isAdmin(a)) {
+			return ResponseUtil.successToClient(adminUserService.updateAdmin(admin));
+		}else{
+			return "{\"admin\":\"false\"}";
+		}
+	}
+
+	public boolean isAdmin(Admin admin){
+		boolean result = false;
+		if(null != admin && admin.getRoleId()==1){
+			result = true;
+		}
+		return result;
 	}
 
 }

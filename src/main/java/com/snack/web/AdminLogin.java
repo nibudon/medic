@@ -51,6 +51,7 @@ public class AdminLogin {
 			List<Permission> userPer = adminLoginService.selectRolePermission(adminSelect.get(0).getRoleId());
 			request.getSession().setAttribute("allPer", allPer);
 			request.getSession().setAttribute("userPer", userPer);
+			request.getSession().setAttribute("currentadmin", adminSelect.get(0));
 			logger.info("admin---"+admin.getAdUsername()+"----logined!");
 			return "redirect:adminGoMain";
 		}

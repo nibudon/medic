@@ -41,14 +41,19 @@ var integralModule = angular.module("adminUserinfoApp",[]);
    			            transformRequest: $scope.processParams
    			        }).success(function (result) {
    			        	//result = $.parseJSON(result);
-   			        	if(result.errCode='000000'){
-   			        		swal("修改成功!","success");
-   			        		$('#personSubCouponModal').modal('hide');
-   			        		createTable();
-   			        	}else{
-   			        	    swal("修改失败!","error");
-   			        	    createTable();
-   			        	}
+   			        	if(result.admin == "false"){
+                            swal("你不是超级管理员，你没有权限进行操作!","error");
+                            createTable();
+						}else{
+                            if(result.errCode='000000'){
+                                swal("修改成功!","success");
+                                $('#personSubCouponModal').modal('hide');
+                                createTable();
+                            }else{
+                                swal("修改失败!","error");
+                                createTable();
+                            }
+						}
    			        })
 				})
 				
@@ -110,13 +115,18 @@ var integralModule = angular.module("adminUserinfoApp",[]);
 	   	 				dataType:"text",
 	   	 				success: function(result){
 		   	 				result = $.parseJSON(result);
-	   			        	if(result.errCode='000000'){
-	   			        		swal("删除成功!","success");
-	   			        		createTable();
-	   			        	}else{
-	   			        	 swal("删除失败!","error");
-				        	    createTable();
-	   			        	}
+                            if(result.admin == "false") {
+                                swal("你不是超级管理员，你没有权限进行操作!", "error");
+                                createTable();
+                            }else{
+                                if(result.errCode='000000'){
+                                    swal("删除成功!","success");
+                                    createTable();
+                                }else{
+                                    swal("删除失败!","error");
+                                    createTable();
+                                }
+							}
 	   	 				},
 		   	 			error:function(){
 		   	 			    swal("没有权限!","error");
