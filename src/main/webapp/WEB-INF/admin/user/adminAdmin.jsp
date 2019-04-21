@@ -126,5 +126,5 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/adminAdmin.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/adminAdmin.js?v=1.0"></script>
 </html>
