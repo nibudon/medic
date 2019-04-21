@@ -94,5 +94,5 @@
 </div>
 
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/myOrder.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/myOrder.js?v=1.3"></script>
 </html>

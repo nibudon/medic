@@ -60,7 +60,7 @@ var integralModule = angular.module("myOrderSuccessApp",[]);
 					    language: {
 					    	url: '/js/china.json'
 					    },
-					    "aLengthMenu":[10],
+					    "aLengthMenu":[6],
 					    serverSide: true,
 					    ajax:{
 					    url:"/user/userSucOrderLimit",

@@ -61,5 +61,5 @@
 		</div>
 </div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/myOrderSuccess.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/myOrderSuccess.js?v=1.1"></script>
 </html>

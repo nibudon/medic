@@ -179,7 +179,7 @@
                 f=false;
                 return;
             }
-            var param="receivePerson="+receivePerson+"&telephone="+telephone+"&address="+address+"&isDefault="+isDefault;
+            var param="receivePerson="+receivePerson+"&telephone="+telephone+"&address="+address+"&isDefault="+isDefault+"&page="+cp;
             if(f){
                 $.ajax({
                     url : "/address/addAddress.html",
@@ -197,7 +197,7 @@
                         //alert(json);
                         alert(json.message);
                         $("#addressDiv").css("display","none");
-                        toPage(cp,uId);
+                        //toPage(cp,uId);
                     },
                     error : function() {
                         alert("error");
@@ -229,7 +229,7 @@
                 f=false;
                 return;
             }
-            var param="receivePerson="+receivePerson+"&telephone="+telephone+"&address="+address+"&isDefault="+isDefault+"&uId="+uId+"&id="+id;
+            var param="receivePerson="+receivePerson+"&telephone="+telephone+"&address="+address+"&isDefault="+isDefault+"&uId="+uId+"&id="+id+"&page="+cp;
             if(f){
                 $.ajax({
                     url : "/address/updateAddress.html",
@@ -248,7 +248,7 @@
                         alert(json.message);
                         $("#addressDiv").css("display","none");
                         $("#UpdateDiv").css("display","none");
-                        toPage(cp,uId);
+                        //toPage(cp,uId);
                     },
                     error : function() {
                         alert("error");
@@ -273,7 +273,7 @@
         }
     }
 
-    $(document).ready(function(){
+    /*$(document).ready(function(){
         //弹出一个页面层
         $('#addBtn').on('click', function(){
             layer.open({
@@ -297,73 +297,75 @@
                 '        </form>'
             });
         });
-    });
+    });*/
 
 </script>
 <body>
-<table class="table myStyle">
-    <c:if test="${not empty addressList }">
-    <tr>
-        <td>编号</td>
-        <td>收货人</td>
-        <td>电话</td>
-        <td>收货地址</td>
-        <td>是否默认</td>
-        <td>编辑</td>
-        <td>删除</td>
-    </tr>
-
-        <c:forEach items="${addressList }" var="address" varStatus="in">
+<div style="height: 800px;overflow: scroll;">
+    <table class="table myStyle">
+        <c:if test="${not empty addressList }">
             <tr>
-                <td>${(currentPage-1)*pageSize+in.count }</td>
-                <td>${address.receivePerson }</td>
-                <td>${address.telephone }</td>
-                <td>${address.address }</td>
-                <td><c:if test="${address.isDefault eq '1' }">是</c:if><c:if test="${address.isDefault eq '0' }">否</c:if></td>
-                <td><a href="javascript:getAddressById('${address.id }')">编辑</a></td>
-                <td><a href="javascript:deleteAddress('${address.id }')">删除</a></td>
+                <td>编号</td>
+                <td>收货人</td>
+                <td>电话</td>
+                <td>收货地址</td>
+                <td>是否默认</td>
+                <td>编辑</td>
+                <td>删除</td>
             </tr>
-        </c:forEach>
-    </c:if>
-    <c:if test="${empty addressList }">
-        没有数据
-    </c:if>
-    <button id="addAddress">添加收货地址</button>
-</table>
-<div id="pageList">
-    <input type="hidden" id="cPage" value="${currentPage }">
-    <input type="hidden" id="tNum" value="${count }">
-    <input type="hidden" id="tPage" value="${totalPage }">
-    <input type="hidden" id="pSize" value="${pageSize }">
-    <c:if test="${currentPage != 1}"><a href="javascript:toPage('${frontuserId }','1');">首页</a></c:if><c:if test="${currentPage == 1}">首页</c:if>
-    <c:if test="${currentPage != 1 }"><a href="javascript:toPage('${frontuserId }','${currentPage-1 }');">上一页</a></c:if><c:if test="${currentPage == 1 }">上一页</c:if>
-    <c:if test="${currentPage != totalPage }"><a href="javascript:toPage('${frontuserId }','${currentPage+1 }');">下一页</a></c:if><c:if test="${currentPage == totalPage }">下一页</c:if>
-    <c:if test="${currentPage != totalPage}"><a href="javascript:toPage('${frontuserId }','${totalPage }');">末页</a></c:if><c:if test="${currentPage == totalPage}">末页</c:if>
-    &nbsp;&nbsp;<input id="thisPage" style="width: 20px;" value="${currentPage }"><a href="javascript:toThisPage('${frontuserId }');">GO</a>&nbsp;&nbsp;当前第${currentPage }页,共${totalPage }页,共${count}条数据,每页显示${pageSize}条数据.
-</div>
-<div id="addressDiv" style="display: none;">
-    <hr />
-    <form name="addForm">
-        收&nbsp;&nbsp;货&nbsp;&nbsp;人:<input name="receivePerson"><br />
-        电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:<input name="telephone"><br />
-        收货地址:<input id="aAddress" name="address" style="width: 400px;">&nbsp;<a href="javascript:getAddress('add')">获取当前位置信息</a><br />
-        <div id="iCenter1"></div>
-        是否默认:<input type="radio" checked name="isDefault" value="1">是<input type="radio" name="isDefault" value="0">否<br />
-        <button id="add">添 加</button>
-    </form>
-</div>
-<div id="UpdateDiv" style="display: none;">
-    <hr />
-    <form name="updateForm">
-        <input type="hidden" name="id" id="updateId">
-        <input type="hidden" name="uId" id="updateUserId">
-        收&nbsp;&nbsp;货&nbsp;&nbsp;人:<input id="uReceivePerson" name="receivePerson"><br />
-        电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:<input id="uTelephone" name="telephone"><br />
-        收货地址:<input id="uAddress" name="address" style="width: 400px;">&nbsp;<a href="javascript:getAddress('update')">获取当前位置信息</a><br />
-        <div id="iCenter2"></div>
-        是否默认:<input type="radio" checked id="uIsDefault1" name="isDefault" value="1">是<input type="radio" id="uIsDefault0" name="isDefault" value="0">否<br />
-        <button id="update">修 改</button>
-    </form>
+
+            <c:forEach items="${addressList }" var="address" varStatus="in">
+                <tr>
+                    <td>${(currentPage-1)*pageSize+in.count }</td>
+                    <td>${address.receivePerson }</td>
+                    <td>${address.telephone }</td>
+                    <td>${address.address }</td>
+                    <td><c:if test="${address.isDefault eq '1' }">是</c:if><c:if test="${address.isDefault eq '0' }">否</c:if></td>
+                    <td><a href="javascript:getAddressById('${address.id }')">编辑</a></td>
+                    <td><a href="javascript:deleteAddress('${address.id }')">删除</a></td>
+                </tr>
+            </c:forEach>
+        </c:if>
+        <c:if test="${empty addressList }">
+            没有数据
+        </c:if>
+        <button id="addAddress">添加收货地址</button>
+    </table>
+    <div id="pageList">
+        <input type="hidden" id="cPage" value="${currentPage }">
+        <input type="hidden" id="tNum" value="${count }">
+        <input type="hidden" id="tPage" value="${totalPage }">
+        <input type="hidden" id="pSize" value="${pageSize }">
+        <c:if test="${currentPage != 1}"><a href="javascript:toPage('${frontuserId }','1');">首页</a></c:if><c:if test="${currentPage == 1}">首页</c:if>
+        <c:if test="${currentPage != 1 }"><a href="javascript:toPage('${frontuserId }','${currentPage-1 }');">上一页</a></c:if><c:if test="${currentPage == 1 }">上一页</c:if>
+        <c:if test="${currentPage != totalPage }"><a href="javascript:toPage('${frontuserId }','${currentPage+1 }');">下一页</a></c:if><c:if test="${currentPage == totalPage }">下一页</c:if>
+        <c:if test="${currentPage != totalPage}"><a href="javascript:toPage('${frontuserId }','${totalPage }');">末页</a></c:if><c:if test="${currentPage == totalPage}">末页</c:if>
+        &nbsp;&nbsp;<input id="thisPage" style="width: 20px;" value="${currentPage }"><a href="javascript:toThisPage('${frontuserId }');">GO</a>&nbsp;&nbsp;当前第${currentPage }页,共${totalPage }页,共${count}条数据,每页显示${pageSize}条数据.
+    </div>
+    <div id="addressDiv" style="display: none; height: 300px;">
+        <hr />
+        <form name="addForm">
+            收&nbsp;&nbsp;货&nbsp;&nbsp;人:<input name="receivePerson"><br />
+            电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:<input name="telephone"><br />
+            收货地址:<input id="aAddress" name="address" style="width: 400px;">&nbsp;<a href="javascript:getAddress('add')">获取当前位置信息</a><br />
+            <div id="iCenter1"></div>
+            是否默认:<input type="radio" checked name="isDefault" value="1">是<input type="radio" name="isDefault" value="0">否<br />
+            <button id="add">添 加</button>
+        </form>
+    </div>
+    <div id="UpdateDiv" style="display: none;  height: 300px;">
+        <hr />
+        <form name="updateForm">
+            <input type="hidden" name="id" id="updateId">
+            <input type="hidden" name="uId" id="updateUserId">
+            收&nbsp;&nbsp;货&nbsp;&nbsp;人:<input id="uReceivePerson" name="receivePerson"><br />
+            电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:<input id="uTelephone" name="telephone"><br />
+            收货地址:<input id="uAddress" name="address" style="width: 400px;">&nbsp;<a href="javascript:getAddress('update')">获取当前位置信息</a><br />
+            <div id="iCenter2"></div>
+            是否默认:<input type="radio" checked id="uIsDefault1" name="isDefault" value="1">是<input type="radio" id="uIsDefault0" name="isDefault" value="0">否<br />
+            <button id="update">修 改</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

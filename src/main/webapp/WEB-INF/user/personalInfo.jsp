@@ -59,7 +59,7 @@ $(document).ready(function(){
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
-				<img id="logoPic" src="${pageContext.request.contextPath}/image/trimImg/snackBZ.jpg" style="display: block;" alt="食尚零食"/>
+				<img id="logoPic" src="${pageContext.request.contextPath}/image/trimImg/snackBZ.jpg" style="display: block;" alt="榆中药材协会"/>
 		</div>
 	</div>
 	<div class="span9">
@@ -114,7 +114,7 @@ $(document).ready(function(){
 </div>
 <div class="container">
     <div style="width: 100%;float: left;">
-		    <div style="width: 20%;height:500px;float: left;background-image:url(${pageContext.request.contextPath}/image/userBG.jpg)">
+		    <div style="width: 20%;height:600px;float: left;background-image:url(${pageContext.request.contextPath}/image/userBG.jpg)">
 					<table cellSpacing="0" cellPadding="0" width="170" border="0">
 					 <tr>
 						 <td valign="top" align="middle">

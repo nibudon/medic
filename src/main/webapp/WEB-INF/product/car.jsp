@@ -237,7 +237,7 @@ $(document).ready(function(){
 						<div class="span24">
 							选择收货地址:
 							<select style="width: 600px;height: 25px;" name="address" id="myAddress">
-							</select>&nbsp;&nbsp;&nbsp;<a href="">添加地址</a>
+							</select><%--&nbsp;&nbsp;&nbsp;<a href="">添加地址</a>--%>
 						</div>
 						<p>
 						收货人&nbsp;&nbsp;&nbsp;：<input id="oName" name="oName" type="text" value="" style="width:400px;height: 20px;" />

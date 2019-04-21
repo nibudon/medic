@@ -81,7 +81,7 @@ public class AddressController {
 	
 	@RequestMapping("/addAddress.html")
 	@ResponseBody
-	public String addAddress(Address address,HttpServletRequest request) {
+	public String addAddress(Address address,int page,HttpServletRequest request) {
 		address.setIsDelete(0);
 		Integer uId=Integer.parseInt(request.getSession().getAttribute("frontuserId").toString());
 		address.setuId(uId);
@@ -96,13 +96,23 @@ public class AddressController {
 		}else{
 			r="{\"message\":\"添加失败\"}";
 		}
+		int count=service.getMyAddressCount(uId);
+		int totalPage=(count%pageSize==0)?count/pageSize:(count/pageSize)+1;
+		request.getSession().setAttribute("totalPage",totalPage);
+		request.getSession().setAttribute("pageSize",pageSize);
+		request.getSession().setAttribute("currentPage",page);
+		request.getSession().setAttribute("currentPage",page);
+		request.getSession().setAttribute("count",count);
+		List<Address> list=service.getMyAddressByPage(uId,page,pageSize);
+		request.getSession().setAttribute("addressList",list);
 		return r;
 	}
 
 	@RequestMapping("/updateAddress.html")
 	@ResponseBody
-	public String updateAddress(Address address,HttpServletRequest request) {
+	public String updateAddress(Address address,int page,HttpServletRequest request) {
 		address.setIsDelete(0);
+		Integer uId=Integer.parseInt(request.getSession().getAttribute("frontuserId").toString());
 		int result=0;
 		String r="";
 		result=service.upAddress(address);
@@ -114,6 +124,15 @@ public class AddressController {
 		}else{
 			r="{\"message\":\"修改失败\"}";
 		}
+		int count=service.getMyAddressCount(uId);
+		int totalPage=(count%pageSize==0)?count/pageSize:(count/pageSize)+1;
+		request.getSession().setAttribute("totalPage",totalPage);
+		request.getSession().setAttribute("pageSize",pageSize);
+		request.getSession().setAttribute("currentPage",page);
+		request.getSession().setAttribute("currentPage",page);
+		request.getSession().setAttribute("count",count);
+		List<Address> list=service.getMyAddressByPage(uId,page,pageSize);
+		request.getSession().setAttribute("addressList",list);
 		return r;
 	}
 	
