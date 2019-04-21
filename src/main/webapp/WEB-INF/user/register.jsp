@@ -182,7 +182,7 @@ $(document).ready(function(){
 									</tr>
 									<tr>
 										<th>
-											<span class="requiredField">*</span>联系方式:
+											<span class="requiredField">*</span>手机号:
 										</th>
 										<td>
 											<input type="text" id="uPhone" name="uPhone" class="text" maxlength="200">

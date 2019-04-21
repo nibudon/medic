@@ -59,7 +59,7 @@ $(document).ready(function(){
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
-				<img id="logoPic" src="${pageContext.request.contextPath}/image/trimImg/snackBZ.jpg" style="display: block;" alt="食尚零食"/>
+				<img id="logoPic" src="${pageContext.request.contextPath}/image/trimImg/snackBZ.jpg" style="display: block;" alt="榆中药材协会"/>
 		</div>
 	</div>
 	<div class="span9">
@@ -128,7 +128,7 @@ $(document).ready(function(){
 							<tbody><tr>
 							    <span style="margin-left: 20px;">${msg}</span>
 								<th>
-									用户名/E-mail:
+									用户名:
 								</th>
 								<td>
 									<input type="text" id="uUsername" name="uUsername" class="text" maxlength="20" />
