@@ -21,23 +21,23 @@
      <script src="${pageContext.request.contextPath}/js/libs/angular.min.js"></script>
   </head>
   <body class="easyui-layout" ng-App="adminMainApp" ng-controller="adminMainCtrl">
-	<div data-options="region:'north'" style="height:100px;text-align: center;">
-	       <span style="font-size:50px;" >榆中药材协会管理系统</span>
+	<div data-options="region:'north'" style="height:100px;text-align: center; background-color: rgb(244,244,244);">
+	       <span style="font-size:45px; color: gray;">榆中药材协会管理系统</span>
 	      <div style="font-size: 15px;position:absolute; right:0; bottom:0;">
 			<span>欢迎:${sessionScope.adminName}</span>|
 			<span id="loginOut" style="cursor:pointer">[退出]</span>
 		  </div>
 	</div>
 	<div data-options="region:'west',split:true,title:'菜单栏'" style="width:150px;padding:10px;">
-        <div class="easyui-accordion" data-options="fit:true,border:false">
+        <div class="easyui-accordion" data-options="fit:true,border:false" style="background-color: rgb(244,244,244) !important;">
 		    <c:forEach items="${adminMenu}" var="list">
-				<div title="${list.menuName }" data-options="selected:true">
+				<div title="${list.menuName }" data-options="selected:true" style="color: gray;">
 				  <div style="margin: 5px">
                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
 				    <c:forEach items="${adminMenuChild}" var="listChild">
 				         <c:if test="${listChild.parentid==list.id}">
 				         	 <li data-options="iconCls:'icon-group_add'">
-                             	<a style="text-decoration:none;" href="${pageContext.request.contextPath}${listChild.childMenuUrl}" target="center"><span>${listChild.childMenuName}</span></a>
+                             	<a style="text-decoration:none; color: gray;" href="${pageContext.request.contextPath}${listChild.childMenuUrl}" target="center"><span>${listChild.childMenuName}</span></a>
                          	 </li>
 				         </c:if>
 				    </c:forEach>

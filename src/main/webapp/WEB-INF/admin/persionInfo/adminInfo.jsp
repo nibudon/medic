@@ -13,22 +13,24 @@
  <script src="${pageContext.request.contextPath}/js/libs/bootstrap.min.js"></script>
 </head>
 <body>
-	<table>
-	    <tr>
-	    	<td>用户名:</td>
-	    	<td><input id="adId" type="hidden"><input id="adUsername" type="text"></td>
-	    </tr>
-		<tr>
-			<td>密码:</td>
-	    	<td><input id="adPassword" type="text"></td>
-		</tr>
-		<tr>
-			<td>角色:</td>
-	    	<td><input id="roleIdT" type="hidden">
-	    	<input id="roleId" type="text" disabled="disabled"></td>
-		</tr>
-		<tr><td colspan="2"><button id="changeAdminUser">修改</button></td></tr>
-	</table>
+	<div style="margin-top: 20px; margin-left: 30px;">
+		<table>
+			<tr>
+				<td>用户名:</td>
+				<td><input id="adId" type="hidden"><input id="adUsername" type="text"></td>
+			</tr>
+			<%--<tr>
+                <td>密码:</td>
+                <td><input id="adPassword" type="text"></td>
+            </tr>--%>
+			<tr>
+				<td>角色:</td>
+				<td><input id="roleIdT" type="hidden">
+					<input id="roleId" type="text" disabled="disabled"></td>
+			</tr>
+			<tr><td colspan="2"><button id="changeAdminUser">修改</button></td></tr>
+		</table>
+	</div>
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/views/adminJs/persionInfo.js"></script>
 </html>

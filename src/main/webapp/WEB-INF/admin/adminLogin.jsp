@@ -7,14 +7,20 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminCss/login.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/libs/bootstrap.min.css" >
 
+    <style type="text/css">
+
+        .mybody{
+            background-color: gray;
+        }
+    </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery.min.js"></script>
 <title>管理员登录</title>
 <link rel="shortcut icon" href="/image/title.jpg" type="image/x-icon" />
 </head>
-<body class="login">
+<body class="login" style="background-color: rgb(244,244,244) !important;">
     <div class="menu-toggler sidebar-toggler"></div>
     <div class="content">
-        <h3 class="form-title font-green">用户登录</h3>
+        <h3 class="form-title font-green" style="color: grey !important;">管理员登录</h3>
         <form action="${pageContext.request.contextPath}/admin/login/adminGoLogin" method="post">
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">用户名</label>
