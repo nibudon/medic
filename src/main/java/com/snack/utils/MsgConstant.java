@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by 胡超云 on 2016/11/30.
+ * Created by 倪卟懂 on 2018/11/30.
  * 返回信息封装
  */
 public class MsgConstant {

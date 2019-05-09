@@ -133,7 +133,7 @@
 					}
 					
 					if($("#uPhone").val()==null || $("#uPhone").val()==""){
-						$("#uPhonemsg").text("联系方式不能为空");		
+						$("#uPhonemsg").text("手机号不能为空");
 						emailflag = false;				
 					}
 					
@@ -149,6 +149,13 @@
 					 }else{
 						 $("#sexmsg").text("请选择性别");
 					 }
+					 var code = $("#code").val();
+					 var hidCode = $("#hidCode").val();
+					 if(code != hidCode){
+					 	$("#codemsg").text("验证码错误!");
+					 	return;
+					 }
+
 					if(uUserflag==true && passflag==true && rpassflag==true && emailflag==true && uRealflag==true && uPhoneflag==true){
 						$.ajax({
 							url:"addUserRegister",
@@ -160,7 +167,7 @@
 						    	"uRealname":$("#uRealname").val(),
 						    	"uSex":sex,
 						    	"uMoney":"10000",
-						    	"uAddress":$("#addr").val()
+						    	"code":$("#code").val()
 						    },
 							type:'post',
 							dataType:"json",
@@ -176,7 +183,7 @@
 					}
 				});
 		});
-		//地图
+		/*//地图
 		var map, geolocation;
 		    //加载地图，调用浏览器定位服务
 		    map = new AMap.Map('', {
@@ -214,4 +221,5 @@
 		    function geocoder_CallBack(data) {
 		        var address = data.regeocode.formattedAddress; //返回地址描述
 		        $("#addr").val(address);
-		    }
+		    }*/
+

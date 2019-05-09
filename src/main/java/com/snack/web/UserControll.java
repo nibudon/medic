@@ -94,12 +94,19 @@ public class UserControll {
 	//注册
 	@RequestMapping("addUserRegister")
 	@ResponseBody
-	public AjaxResult addUserOne(Userinfo userinfo){
-		 userinfo.setuPassword(MyMd5.getMd5(userinfo.getuPassword()));
-		 AjaxResult aj=new AjaxResult();
-		 int rs = userService.addUserOne(userinfo);
-		 aj.setTag(rs);
-		 return aj;
+	public AjaxResult addUserOne(Userinfo userinfo,String code,HttpServletRequest request){
+		String realCode = (request.getSession().getAttribute("code") == null?null:request.getSession().getAttribute("code").toString());
+		if(code != null && code.equals(realCode)){
+			userinfo.setuPassword(MyMd5.getMd5(userinfo.getuPassword()));
+			AjaxResult aj=new AjaxResult();
+			int rs = userService.addUserOne(userinfo);
+			aj.setTag(rs);
+			return aj;
+		}else {
+			AjaxResult aj=new AjaxResult();
+			aj.setTag(0);
+			return aj;
+		}
 	}
 	
 	//查登陆的用户

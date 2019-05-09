@@ -17,10 +17,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
-/**
- * 用于创建.xlsx
- * @author zhongjiafeng
- */
+
 @Component
 public class ExcelUtil2 {
 
