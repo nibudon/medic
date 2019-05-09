@@ -21,7 +21,7 @@ public class SDKTestSendTemplateSMS {
         CCPRestSDK restAPI = new CCPRestSDK();
         restAPI.init("app.cloopen.com", "8883");// 初始化服务器地址和端口，格式如下，服务器地址不需要写https://
         restAPI.setAccount("8aaf070863c9d21e0163dea2a09a0c50", "1bd10afea6df4dfda6e41df7f441b896");// 初始化主帐号和主帐号TOKEN
-        restAPI.setAppId("8aaf070863c9d21e0163dea2a0f40c56");// 初始化应用ID
+        restAPI.setAppId("8aaf070863c9d21e0163eedc0de4122b");// 初始化应用ID
         result = restAPI.sendTemplateSMS("15328393101","1" ,new String[]{"123456","5"});
 
         System.out.println("SDKTestSendTemplateSMS result=" + result);
@@ -47,7 +47,7 @@ public class SDKTestSendTemplateSMS {
         CCPRestSDK restAPI = new CCPRestSDK();
         restAPI.init("app.cloopen.com", "8883");// 初始化服务器地址和端口，格式如下，服务器地址不需要写https://
         restAPI.setAccount("8aaf070863c9d21e0163dea2a09a0c50", "1bd10afea6df4dfda6e41df7f441b896");// 初始化主帐号和主帐号TOKEN
-        restAPI.setAppId("8aaf070863c9d21e0163dea2a0f40c56");// 初始化应用ID
+        restAPI.setAppId("8aaf070863c9d21e0163eedc0de4122b");// 初始化应用ID
         result = restAPI.sendTemplateSMS(tel,"1" ,new String[]{code,"5"});
 
         //System.out.println("SDKTestSendTemplateSMS result=" + result);
