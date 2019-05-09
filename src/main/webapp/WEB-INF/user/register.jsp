@@ -10,10 +10,10 @@
 <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css"/>
 
-<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=0ece8b3995ab2c2ca58fe0a284e94723&plugin=AMap.Geocoder"></script>
+<%--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=0ece8b3995ab2c2ca58fe0a284e94723&plugin=AMap.Geocoder"></script>--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/maps.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/register.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/views/register.js?v=1.3"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$.ajax({
@@ -39,10 +39,77 @@ $(document).ready(function(){
 			alert("error");
 		}
 	});
+
+	$("#codeBtn").bind("click",function(){
+		var tel = $("#uPhone").val();
+		var hm=/^1[3|4|5|7|8][0-9]{9}$/;
+		if(tel==null || tel==""){
+			$("#uPhonemsg").text("手机号不能为空");
+			return;
+		}else if(!hm.test($("#uPhone").val())){
+			$("#uPhonemsg").text("手机号格式不正确");
+			return;
+		}
+		chengeBtn();
+		var param = "tel="+tel;
+		$.ajax({
+			url : "${pageContext.request.contextPath }/code/getCode.html",
+			type : "get",
+			cache : false,
+			dataType : "text",
+			data : param,
+			beforeSend : function(datas) {
+				//alert("before");
+			},
+			async : true,
+			success : function(datas) {
+				var json=JSON.parse(datas);
+				if(json.success == "true"){
+					$("#hidCode").val(json.code);
+				}else{
+					$("#uPhonemsg").text("获取验证码失败，请稍后重试!");
+				}
+			},
+			error : function() {
+				//alert("error");
+			}
+		});
+	});
+
+	function chengeBtn(){
+		size = 60;
+		var t = setInterval(function(){
+			if(size >= 0){
+				$("#codeBtn").val("重新获取("+size+")");
+				$("#codeBtn")[0].disabled = true;
+				size--;
+			}else{
+				$("#codeBtn").val("获取验证码");
+				$("#codeBtn")[0].disabled = false;
+				clearInterval(t);
+			}
+		},1000);
+	}
+
+	$("#code").bind("blur",function(){
+		var code = $("#code").val();
+		var hidCode = $("#hidCode").val();
+		if(code == ""){
+			$("#codemsg").css("color","red");
+			$("#codemsg").text("请填写验证码!");
+		}
+		if(hidCode != "" && code != hidCode){
+			$("#codemsg").css("color","red");
+			$("#codemsg").text("验证码错误!");
+		}else{
+			$("#codemsg").css("color","green");
+			$("#codemsg").text("验证码正确!");
+		}
+	});
 });
 </script>
 </head>
-<body onload="regeocoder()">
+<body>
 <div class="span11">
 		<div class="cart">
 			<a  href="${pageContext.request.contextPath}/sorder/gotocar">购物车</a>
@@ -186,7 +253,21 @@ $(document).ready(function(){
 										</th>
 										<td>
 											<input type="text" id="uPhone" name="uPhone" class="text" maxlength="200">
+											<input id="codeBtn" type="button" value="获取验证码" style="cursor: pointer;" />
 											<span style="color:red" id="uPhonemsg"></span>
+										</td>
+									</tr>
+
+									<tr>
+										<th>
+											<span class="requiredField">*</span>验证码:
+										</th>
+										<td>
+											<input type="text" id="code" name="code" style="width: 50px;">
+											<span style="color:red" id="codemsg"></span>
+											<div style="display: none;">
+												<input type="text" id="hidCode" name="hidCode" style="width: 50px;">
+											</div>
 										</td>
 									</tr>
 									

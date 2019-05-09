@@ -6,12 +6,7 @@ import javax.crypto.Cipher;
 
 import org.apache.log4j.Logger;
 
-/**
- *
- * @author zhuangqianmin
- * @version 创建时间：2018年10月18日 上午9:51:10
- *
- */
+
 public class DesUtils {
 
     private static final Logger log           = Logger.getLogger(DesUtils.class);
